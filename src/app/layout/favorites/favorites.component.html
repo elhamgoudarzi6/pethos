@@ -1,0 +1,130 @@
+<p-toast position="center"></p-toast>
+
+<div class="header-image-wrapper">
+  <div class="bg"></div>
+  <div class="mask"></div>
+  <div class="header-image-content mh-200">
+    <p class="desc">املاک مورد علاقه</p>
+  </div>
+</div>
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="pb-0">
+      <li><a routerLink="/"><i class="pi pi-home"></i></a></li>
+      <li>املاک مورد علاقه</li>
+    </ol>
+  </div>
+</section>
+<div class="px-3 my-4">
+  <div class="theme-container">
+    <div class="row justify-content-right mt-3">
+      <div class="item col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 p-0" *ngFor="
+              let item of favorites| paginate: {itemsPerPage: pageSize,currentPage: page,totalItems: total}">
+        <div class="property-card property-item m-2 grid-item column-4 full-width-page">
+          <div class="thumbnail-section">
+            <div class="price-type">
+              <span *ngIf="item.Property[0].priceType==='به قیمت'" class="green font-iran-bold">{{ item.Property[0].priceType }}</span>
+              <span *ngIf="item.Property[0].priceType==='مناسب'"  class="orange font-iran-bold">{{ item.Property[0].priceType }}</span>
+            </div>
+            <div class="property-status">
+              <span class="green font-iran-bold">{{ item.Property[0].TransactionType[0].title }}</span>
+            </div>
+            <div class="property-image">
+              <img *ngIf="item.Property[0].image === null || item.Property[0].image === ''"
+                src="../../../assets/images/user-default.png" class="w-100" height="200px" />
+              <img *ngIf="item.Property[0].image !== null" [src]="item.Property[0].image" class="w-100"
+                height="200px" />
+            </div>
+            <div class="control-icons">
+              <button class="add-to-favorite-button" title=" حذف از لیست علاقه مندی ها"
+                (click)="deleteFavorite(item.userID,item.propertyID)">
+                <svg width="18" height="18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"
+                  enable-background="new 0 0 1000 1000" xml:space="preserve">
+                  <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                  <g>
+                    <g transform="translate(0.000000,426.000000) scale(0.100000,-0.100000)">
+                      <path
+                        d="M2244.2,3353.9C1208.7,3167,393.2,2388.4,161.5,1368.5C-37,486.8,245.2-492.3,1004.3-1553.1C1744-2586.7,2976.1-3725.4,4171.2-4478.6c348.4-218,657.9-369.8,792.2-383.5c124.6-11.7,276.4,44.8,589.8,219.9C6579-4064,7853.9-2977.9,8663.6-1991.1C9516.2-953.6,9948.3,76.1,9895.7,940.3c-74,1220.4-955.7,2207.3-2160.6,2415.6c-219.9,37-611.2,37-844.7,0c-747.4-120.7-1469.6-619-1818-1255.5c-35-64.2-70.1-116.8-75.9-116.8c-5.8,0-21.4,23.4-35,54.5c-116.8,255-531.4,712.4-819.5,903.2c-325.1,214.1-681.3,356.2-1031.6,414.6C2880.7,3392.8,2454.4,3390.9,2244.2,3353.9z" />
+                    </g>
+                  </g>
+                </svg> </button>
+            </div>
+          </div>
+          <div class="property-content-wrapper">
+            <div class="property-content text-right">
+              <div class="content">
+                <span class="code flex-nowrap">
+                  <span>کد: {{ item.Property[0].code }}</span>
+                </span>
+                <h1 class="title">
+                  <a (click)="redirectToDetails(item.Property[0]._id)">{{ item.Property[0].title }}</a>
+                </h1>
+                <p class="row address flex-nowrap">
+                  <i class="material-icons text-muted">location_on</i>
+                  <span>{{ item.Property[0].state + "، " + item.Property[0].city }}</span>
+                </p>
+                <div class="row justify-content-center" *ngIf="
+                        item.Property[0].transactionTypeID === '613be86ae83f7824dce7cadb'">
+                  <h3 class="primary-color price">
+                    <span>{{ item.Property[0].price | number }} تومان</span>
+                  </h3>
+                </div>
+
+                <div class="row justify-content-center"
+                  *ngIf="item.Property[0].transactionTypeID !== '613be86ae83f7824dce7cadb'">
+                  <h3 class="primary-color price">
+                    <span>رهن {{ item.Property[0].priceMortgage | number }} -
+                      اجاره {{ item.Property[0].priceRent | number }} </span>
+                  </h3>
+                </div>
+
+                <div class="features mt-3">
+                  <p>
+                    <span>{{ item.Property[0].area }}</span><span><i class="fa fa-arrows" aria-hidden="true"></i>متراژ
+                    </span>
+                  </p>
+                  <p>
+                    <span>{{ item.Property[0].age }}</span><span><i class="fa fa-calendar" aria-hidden="true"></i>سن ملک
+                    </span>
+                  </p>
+                  <p>
+                    <span> {{ item.Property[0].bath }}</span><span><i class="fa fa-bath"></i>حمام</span>
+                  </p>
+                  <p>
+                    <span>{{ item.Property[0].bedroom }}</span>
+                    <span><i class="fa fa-bed" aria-hidden="true"></i>اتاق خواب</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="actions row justify-content-center mt-3">
+                <div class="col-6 align-self-center">
+                  <p class="date mb-0">
+                    <i class="material-icons text-muted">date_range</i>
+                    <span class="mx-2">{{ item.Property[0].date }}</span>
+                  </p>
+                </div>
+                <div class="col-6 align-self-center d-flex flex-row-reverse">
+                  <a class="white-flat-button" [routerLink]="['/property',item.Property[0]['_id']]">جزییات</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3 site-card" *ngIf="total === 0">
+      <div class="bg-pagination w-100">
+        <p class="text-center font-weight-bold py-3 mb-0">
+          نتیجه جستجو یافت نشد.
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3 site-card" *ngIf="total !== 0">
+      <div class="col-md-12 col-sm-12 align-self-center">
+        <pagination-controls (pageChange)="page = $event" class="theme-pagination p-3 text-center" previousLabel="قبلی"
+          nextLabel="بعدی"></pagination-controls>
+      </div>
+    </div>
+  </div>

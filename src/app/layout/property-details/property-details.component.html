@@ -1,0 +1,238 @@
+<p-toast position="center"></p-toast>
+
+<div class="px-3">
+  <div class="theme-container">
+    <div class="row m-0 py-5 justify-content-center property-detail">
+      <div class="col-lg-3 col-md-3 col-sm-12 agent-sec">
+        <div class="row m-0">
+          <div class="col-xs-12 site-card">
+            <div>
+              <img [src]="property.Agent[0].image" [alt]="property.title" class="img-fluid w-100" />
+            </div>
+            <div class="p-3 text-right">
+              <h2 class="fw-600">{{ property.Agent[0].fullName }}</h2>
+              <p-rating [iconOnStyle]="{'color':'orange'}"  [ngModel]="agentRating | number : '1.2-2'" readonly="true" stars="5" [cancel]="false">
+              </p-rating>
+              <span>{{ property.Agent[0].Pethos[0].title}}/{{ property.Agent[0].Pethos[0].SubPethos[0].title}}/{{
+                property.Agent[0].Pethos[0].SubPethos[0].SubSubPethos[0].title}}</span><br />
+              <span>سطح: {{ property.Agent[0].AgentLevel[0].level}}</span><br />
+              <span>تخصص: {{ property.Agent[0].SubPropertyType[0].title}}</span><br />
+              <span>امتیاز:{{ agentRating}}</span>
+              <p class="mt-3 text-muted text-justify fw-500">
+                {{ property.Agent[0].info }}
+              </p>
+              <p class="row align-self-center d-flex">
+                <i class="material-icons primary-color">call</i>
+                <span class="mx-2 text-muted fw-500">{{ property.Agent[0].mobile}}</span>
+              </p>
+              <div class="row justify-content-center">
+                <span style="font-family:IRANSans_Bold;font-size: 14px;padding-left: 10px;"> ثبت امتیاز: </span>
+                <p-rating [iconOnStyle]="{'color':'orange'}"  (onRate)="onRateChange($event)" [(ngModel)]="rate" [cancel]="false"></p-rating>
+              </div>
+              <div class="row pb-3">
+                <div class="divider"></div>
+              </div>
+              <div class="row justify-content-center">
+                <div class="col d-flex flex-row-reverse">
+                  <a class="green-button" (click)="submitVisitRequest()">
+                    درخواست بازدید
+                  </a>
+                </div>
+                <div class="col d-flex">
+                  <a class="white-flat-button" (click)="redirectToAgentDetail()">
+                    مشاهده پروفایل
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-lg-8 col-md-8 mr-0 mr-md-4">
+        <div class="row m-0">
+          <div class="col-xs-12 w-100 site-card">
+            <div class="justify-content-center row m-2 d-flex flex-row px-2 m-0">
+              <div class="col align-self-center text-right">
+                <h2 class="text-right rtl">کد: {{ property.code }}</h2>
+              </div>
+              <div class="col align-self-center text-left d-flex flex-row-reverse">
+                <button class="add-to-favorite-button" title="افزودن به علاقه مندی ها"
+                  (click)="addToFavorites(property._id)">
+                  <svg width="18" height="18" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000"
+                    enable-background="new 0 0 1000 1000" xml:space="preserve">
+                    <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                    <g>
+                      <g transform="translate(0.000000,426.000000) scale(0.100000,-0.100000)">
+                        <path
+                          d="M2244.2,3353.9C1208.7,3167,393.2,2388.4,161.5,1368.5C-37,486.8,245.2-492.3,1004.3-1553.1C1744-2586.7,2976.1-3725.4,4171.2-4478.6c348.4-218,657.9-369.8,792.2-383.5c124.6-11.7,276.4,44.8,589.8,219.9C6579-4064,7853.9-2977.9,8663.6-1991.1C9516.2-953.6,9948.3,76.1,9895.7,940.3c-74,1220.4-955.7,2207.3-2160.6,2415.6c-219.9,37-611.2,37-844.7,0c-747.4-120.7-1469.6-619-1818-1255.5c-35-64.2-70.1-116.8-75.9-116.8c-5.8,0-21.4,23.4-35,54.5c-116.8,255-531.4,712.4-819.5,903.2c-325.1,214.1-681.3,356.2-1031.6,414.6C2880.7,3392.8,2454.4,3390.9,2244.2,3353.9z" />
+                      </g>
+                    </g>
+                  </svg> </button>
+              </div>
+            </div>
+            <div class="justify-content-right row m-2 d-flex flex-row px-2 m-0">
+              <h2 class="text-right rtl"> {{ property.PropertyType[0].title }} / {{ property.SubPropertyType[0].title
+                }} / {{ property.TransactionType[0].title }}</h2>
+            </div>
+            <div class="justify-content-right row m-2 d-flex flex-row px-2 m-0">
+              <div class="col-sm-12 col-lg-6 align-self-center text-left">
+                <h2 class="text-right rtl">{{ property.title }}</h2>
+              </div>
+              <div class="col-sm-12 col-lg-6 align-self-center text-left" *ngIf="property.price !==null">
+                <h2 class="primary-color price">
+                  <span>{{ property.price | number }} تومان</span>
+                </h2>
+              </div>
+              <div class="col-sm-12 col-lg-6 align-self-center text-left" *ngIf="property.priceMortgage !== null">
+                <h2 class="primary-color price">
+                  <span>رهن {{ property.priceMortgage | number }} تومان -
+                    اجاره {{ property.priceRent | number }} تومان</span>
+                </h2>
+              </div>
+            </div>
+            <div class="justify-content-right m-2 d-flex flex-row px-2 m-0">
+              <p class="row flex-nowrap address mb-0">
+                <i class="material-icons text-muted">location_on</i>
+                <span class="fw-500 text-muted">{{
+                  property.state + " " + property.city
+                  }}</span>
+              </p>
+
+
+
+
+            </div>
+          </div>
+
+          <div class="col-xs-12 site-card w-100 mt-4 p-3" *ngIf="galleryFiles.length > 0">
+            <h2 class="text-right fw-500 mb-2">گالری</h2>
+
+            <p-galleria #galleria [value]="galleryFiles" [responsiveOptions]="responsiveOptions" [numVisible]="5"
+              [circular]="true" [showItemNavigators]="true">
+              <ng-template pTemplate="item" let-item>
+                <img [src]="item.previewImageSrc" style="width: 100%; display: block" />
+                <button type="button" pButton [icon]="fullScreenIcon()" (click)="toggleFullScreen()"
+                  class="fullscreen-button"></button>
+              </ng-template>
+              <ng-template pTemplate="thumbnail" let-item>
+                <div class="p-grid p-nogutter p-justify-center">
+                  <img [src]="item.previewImageSrc" style="display: block; width: 150px" />
+                </div>
+              </ng-template>
+            </p-galleria>
+          </div>
+
+
+
+          <div class="col-xs-12 w-100 mt-4">
+            <div class="site-card row m-0 d-flex flex-row py-3 px-2">
+              <div class="col-12">
+                <h2 class="text-right fw-500 mb-2">جزییات</h2>
+              </div>
+              <div class="col-sm-12 col-md-6 align-self-center text-right">
+                <span>متراژ:</span>
+                <span>{{ property.area }} متر</span>
+              </div>
+              <div class="col-sm-12 col-md-6 align-self-center text-right">
+                <span>سن ملک:</span>
+                <span>{{ property.age }}</span>
+              </div>
+              <div class="col-sm-12 col-md-6 align-self-center text-right">
+                <span>حمام:</span>
+                <span>{{ property.bath }}</span>
+              </div>
+              <div class="col-sm-12 col-md-6 align-self-center text-right">
+                <span>اتاق خواب:</span>
+                <span>{{ property.bedroom }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 w-100 mt-4" *ngIf="property.features.length > 0">
+            <div class="site-card row m-0 d-flex flex-row py-3 px-2">
+              <div class="col-12">
+                <h2 class="text-right fw-500 mb-2">ویژگی ها</h2>
+              </div>
+              <div class="col-sm-12 col-md-4 align-self-center text-right" *ngFor="let item of property.features">
+                <i class="material-icons mat-icon-sm primary-color">check</i>
+                <span class="mx-2">{{ item.title }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 w-100 mt-3" *ngIf="property.condition.length > 0">
+            <div class="site-card row m-0 d-flex flex-row py-3 px-2">
+              <div class="col-12">
+                <h2 class="text-right fw-500 mb-2">شرایط</h2>
+              </div>
+
+              <div class="col-sm-12 col-md-3 align-self-center text-right" *ngFor="let item of property.condition">
+                <i class="material-icons mat-icon-sm primary-color">check</i>
+                <span class="mx-2">{{ item.title }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 w-100 mt-3" *ngIf="property.exchange.length > 0">
+            <div class="site-card row m-0 d-flex flex-row py-3 px-2">
+              <div class="col-12">
+                <h2 class="text-right fw-500 mb-2">قابل معاوضه با</h2>
+              </div>
+
+              <div class="col-sm-12 col-md-3 align-self-center text-right" *ngFor="let item of property.exchange">
+                <i class="material-icons mat-icon-sm primary-color">check</i>
+                <span class="mx-2">{{ item.title }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 w-100 mt-4">
+            <div class="site-card row m-0 d-flex flex-row py-3 px-2">
+              <div class="col-12">
+                <h2 class="text-right fw-500 mb-2">توضیحات</h2>
+              </div>
+              <div class="col-sm-12 col-md-12 align-self-center text-right">
+                <p>
+                  {{ property.detail }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-12 w-100 mt-4">
+            <div class="site-card row m-0 d-flex flex-row py-3 px-2">
+              <div class="col-12">
+                <h2 class="text-right fw-500 mb-2">لوکیشن</h2>
+              </div>
+              <div class="pethos-mapbox" id="pethos-mapbox"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12 mb-3">
+              <div class="pethos-mapbox" id="pethos-mapbox"></div>
+            </div>
+          </div>
+
+
+          <div class="col-xs-12 site-card w-100 mt-4 p-3" *ngIf="vrFiles.length > 0">
+            <h2 class="text-right fw-500 mb-2">تصاویر داخلی</h2>
+            <p-galleria #galleria [value]="vrFiles" [responsiveOptions]="responsiveOptions" [numVisible]="5"
+              [circular]="true" [showItemNavigators]="true">
+              <ng-template pTemplate="item" let-item>
+                <img [src]="item.previewImageSrc" style="width: 100%; display: block" />
+                <button type="button" pButton [icon]="fullScreenIcon()" (click)="toggleFullScreen()"
+                  class="fullscreen-button"></button>
+              </ng-template>
+              <ng-template pTemplate="thumbnail" let-item>
+                <div class="p-grid p-nogutter p-justify-center">
+                  <img [src]="item.previewImageSrc" style="display: block; width: 150px" />
+                </div>
+              </ng-template>
+            </p-galleria>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

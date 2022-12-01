@@ -1,0 +1,56 @@
+<div id="mobile-fixed" class="top-toolbar container-fluid top-app-bar">
+  <div class="row h-100">
+    <div class="col align-self-center">
+      <div class="row fw-500 d-flex pr-3">
+        <span class="d-flex top-bar-item">
+          <a (click)="displayMobileMenu = true">
+            <i class="fa fa-bars fa-lg"></i>
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="col d-flex flex-row-reverse align-self-center">
+      <div class="row fw-500 d-flex pl-3">
+        <div class="btn-group">
+          <button
+            type="button"
+            class="btn btn-link dropdown-toggle text-white m-0 p-0 account-btn"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            حساب کاربری
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/auth']" *ngIf="!isLogged"
+              >ثبت نام | ورود</a
+            >
+            <a class="dropdown-item" [routerLink]="['/user']" *ngIf="isLogged"
+              >پنل کاربر</a
+            >
+            <a class="dropdown-item" [routerLink]="['/favorites']"
+              >علاقه مندی ها</a
+            >
+            <div class="dropdown-divider" *ngIf="isLogged"></div>
+            <a class="dropdown-item" *ngIf="isLogged" (click)="logOut()">خروج</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- side MENU -->
+<p-sidebar
+  [(visible)]="displayMobileMenu"
+  [style]="{ width: '15em' }"
+  position="right"
+  [showCloseIcon]="true"
+  [baseZIndex]="10000"
+>
+  <div class="d-flex flex-column">
+    <div class="mb-auto">
+      <p-panelMenu [model]="items" [style]="{ width: '100%' }"></p-panelMenu>
+    </div>
+  </div>
+</p-sidebar>

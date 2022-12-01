@@ -1,0 +1,130 @@
+<div class="header-image-wrapper">
+  <div class="bg"></div>
+  <div class="mask"></div>
+  <div class="header-image-content mh-200">
+    <p class="desc">اخبار</p>
+  </div>
+</div>
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="pb-0">
+      <li><a routerLink="/"><i class="pi pi-home"></i></a></li>
+      <li>اخبار</li>
+    </ol>
+  </div>
+</section>
+<div class="px-3 my-4">
+  <div class="theme-container">
+    <div class="row m-0 justify-content-center">
+      <div class="d-md-block col-lg-3 col-md-3 site-card py-4">
+        <div class="row justify-content-center pb-3">
+          <div class="col-12 text-right">
+            <p class="m-2 fw-500">جستجو</p>
+          </div>
+          <div class="col-12">
+            <input pInputText [(ngModel)]="search" placeholder="جستجو" style="width: 100%" />
+          </div>
+          <div class="row justify-content-center pt-4">
+            <div class="col-12">
+              <button class="white-flat-button" type="submit" (click)="clearSearch()" [disabled]="newList.length === 0">
+                <i class="fa fa-newspaper"></i>
+                همه اخبار
+              </button>
+              <button class="green-button" type="submit" (click)="searchNews()" [disabled]='!search'>
+                <i class="fa fa-search"></i>
+                جستجو
+              </button>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-12 text-right">
+          <p class="m-2 fw-500">جدیدترین خبرها</p>
+        
+        <div class="recent-blog" *ngFor="let i of latestNews">
+          <div class="row">
+            <div class="col-5">
+              <img class="img-fluid h-100" [src]="i['image']" [alt]="i['imageDescription']">
+            </div>
+            <div class="col-7">
+             <a [routerLink]="['/new',i['_id']]">{{i['title']}}</a>
+              <div class="row justify-content-center mt-3">
+                <p class="row text-right rtl">
+                  <i class="material-icons text-muted">date_range</i>
+                  <span class="mr-2">{{ i.date }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12 text-right">
+            <p class="m-2 fw-500">تگ ها</p>
+          </div>
+          <div class="col-12 text-right">
+            <ng-container *ngFor="let item of tags">
+              <p-tag [value]="item" (click)="setTags(item)"></p-tag>
+            </ng-container>
+          </div>
+        </div>
+        </div>
+      
+      </div>
+      <div class="col-sm-12 col-lg-8 col-md-8 site-box mr-0 mr-md-4">
+        <div class="row justify-content-center site-card d-flex flex-row" *ngIf="news.length === 0">
+          <div class="d-none d-md-block col align-self-center text-right">
+            <p class="mb-0">موردی یافت نشد.</p>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-3" *ngIf="news.length > 0">
+          <div class="col-12 mb-2 p-0" *ngFor="
+              let item of news
+                | paginate
+                  : {
+                      itemsPerPage: pageSize,
+                      currentPage: page,
+                      totalItems: total
+                    }
+            ">
+            <div class="news-card news-item">
+              <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                  <img [src]="item.image" class="img-fluid w-100 h-100" alt="item.imageDescription" />
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 p-4">
+                  <h3 class="text-right">
+                    <a (click)="redireectToDetail(item._id)">{{
+                      item.title
+                      }}</a>
+                  </h3>
+                  <div class="description text-right text-justify mt-3">
+                    <p class="desc">
+                      {{ item.brief }}
+                    </p>
+                  </div>
+                  <div class="actions row justify-content-center mt-3">
+                    <div class="col-6 align-self-center">
+                      <p class="row writer text-right rtl">
+                        <i class="material-icons text-muted">date_range</i>
+                        <span class="mr-2">{{ item.date }}</span>
+                      </p>
+                    </div>
+                    <div class="col-6 align-self-center text-left">
+                      <a class="white-flat-button" (click)="redirectToDetail(item._id)">جزییات</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-3 site-card">
+          <div class="col-md-12 col-sm-12 align-self-center">
+            <pagination-controls (pageChange)="page = $event" class="theme-pagination p-3 text-center"
+              previousLabel="قبلی" nextLabel="بعدی"></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

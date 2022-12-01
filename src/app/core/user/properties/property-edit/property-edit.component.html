@@ -1,0 +1,325 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">دسته بندی اول <b class="text-danger">*</b></label>
+            <p-dropdown
+              appendTo="body"
+              emptyFilterMessage="نتیجه ای یافت نشد"
+              emptyMessage="نتیجه ای یافت نشد"
+              [options]="propertyTypes"
+              optionLabel="title"
+              (onChange)="onTypeChange($event)"
+              [filter]="true"
+              filterBy="title"
+            >
+            </p-dropdown>
+          </div>
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">دسته بندی دوم<b class="text-danger">*</b></label>
+            <p-dropdown
+              appendTo="body"
+              emptyFilterMessage="نتیجه ای یافت نشد"
+              emptyMessage="نتیجه ای یافت نشد"
+              [options]="subPropertyTypes"
+              optionLabel="title"
+              (onChange)="onSubTypeChange($event)"
+              [filter]="true"
+              filterBy="title"
+            >
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">عنوان<b class="text-danger">*</b></label>
+            <input
+              name="title"
+              type="text"
+              pInputText
+              formControlName="title"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">نوع قیمت</label>
+            <p-dropdown
+              [options]="priceTypes"
+              formControlName="priceType"
+              optionLabel="name"
+              ></p-dropdown>
+          </div>
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">نوع آگهی<b class="text-danger">*</b></label>
+            <p-dropdown
+              appendTo="body"
+              emptyFilterMessage="نتیجه ای یافت نشد"
+              emptyMessage="نتیجه ای یافت نشد"
+              [options]="transactionTypes"
+              optionLabel="title"
+              (onChange)="onTransactionTypeChange($event)"
+              [filter]="true"
+              filterBy="title"
+
+              >
+            </p-dropdown>
+          </div>
+        </div>
+        <div class="row" *ngIf="!forSale">
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">ودیعه</label>
+            <input
+              pKeyFilter="int"
+              formControlName="priceMortgage"
+              name="priceMortgage"
+              pInputText
+              placeholder="ودیعه"
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">اجاره</label>
+            <input
+              pKeyFilter="int"
+              formControlName="priceRent"
+              name="priceRent"
+              pInputText
+              placeholder="اجاره"
+            />
+          </div>
+        </div>
+        <div class="row" *ngIf="forSale">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">قیمت</label>
+            <input
+              pKeyFilter="int"
+              formControlName="price"
+              name="price"
+              pInputText
+              placeholder="قیمت"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">سن ملک</label>
+            <input
+              pKeyFilter="int"
+              formControlName="age"
+              name="age"
+              pInputText
+              placeholder="سن ملک"
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">متراژ</label>
+            <input
+              pKeyFilter="int"
+              formControlName="area"
+              name="area"
+              pInputText
+              placeholder="متراژ"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">تعداد اتاق خواب</label>
+            <input
+              pKeyFilter="int"
+              formControlName="bedroom"
+              name="bedroom"
+              pInputText
+              placeholder="تعداد اتاق خواب"
+            />
+          </div>
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">تعداد حمام</label>
+            <input
+              pKeyFilter="int"
+              formControlName="bath"
+              name="bath"
+              pInputText
+              placeholder="تعداد حمام"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">جزییات</label>
+            <textarea
+              formControlName="detail"
+              name="detail"
+              pInputText
+              placeholder="جزییات"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 col-sm-12 mb-3">
+            <label class="panel-form-label">ویژگی ها</label>
+            <p-multiSelect
+              [options]="features"
+              formControlName="features"
+              optionLabel="title"
+            ></p-multiSelect>
+          </div>
+
+          <div class="col-lg-4 col-sm-12 mb-3">
+            <label class="panel-form-label">شرایط</label>
+            <p-multiSelect
+              [options]="conditions"
+              formControlName="condition"
+              optionLabel="title"
+              (onChange)="onConditionChange($event)"
+            ></p-multiSelect>
+          </div>
+
+          <div class="col-lg-4 col-sm-12 mb-3" *ngIf="isExchangable">
+            <label class="panel-form-label">معاوضه با</label>
+            <p-multiSelect
+              [options]="exchanges"
+              formControlName="exchange"
+              optionLabel="title"
+            ></p-multiSelect>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">استان</label>
+            <p-dropdown
+              [options]="states"
+              (onChange)="stateOnChange($event)"
+              formControlName="state"
+              optionLabel="name"
+            ></p-dropdown>
+          </div>
+          <div class="col-lg-6 col-sm-12 mb-3">
+            <label class="panel-form-label">شهر</label>
+            <p-dropdown
+              [options]="cities"
+              formControlName="city"
+              optionLabel="name"
+            ></p-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">آدرس ملک</label>
+            <textarea
+              formControlName="address"
+              name="address"
+              pInputText
+              placeholder="آدرس ملک"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <div class="pethos-mapbox" id="pethos-mapbox"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">تصویر ملک</label>
+            <p-fileUpload
+              chooseLabel="انتخاب تصویر"
+              uploadLabel="آپلود تصویر"
+              cancelLabel="انصراف"
+              [customUpload]="true"
+              (uploadHandler)="onFileUpload($event)"
+              invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+              invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+              accept="image/jpeg,image/png"
+              [maxFileSize]="2000000"
+            >
+            </p-fileUpload>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">تصاویر گالری</label>
+            <p-fileUpload
+              chooseLabel="انتخاب تصویر"
+              uploadLabel="آپلود تصویر"
+              cancelLabel="انصراف"
+              customUpload="true"
+              multiple="multiple"
+              (uploadHandler)="onFilesUpload($event)"
+              invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+              invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+              accept="image/jpeg,image/png"
+              maxFileSize="2000000"
+            >
+            </p-fileUpload>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">تصاویر داخلی</label>
+            <p-fileUpload
+              chooseLabel="انتخاب تصویر"
+              uploadLabel="آپلود تصویر"
+              cancelLabel="انصراف"
+              customUpload="true"
+              multiple="multiple"
+              (uploadHandler)="onVrFilesUpload($event)"
+              invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+              invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+              accept="image/jpeg,image/png"
+              maxFileSize="2000000"
+            >
+            </p-fileUpload>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">توضیحات تصویر</label>
+            <p-chips
+              [addOnTab]="true"
+              [addOnBlur]="true"
+              formControlName="imageDescription"
+            ></p-chips>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">کلمات کلیدی</label>
+            <p-chips
+              [addOnTab]="true"
+              [addOnBlur]="true"
+              formControlName="keywords"
+            ></p-chips>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 mb-3">
+            <label class="panel-form-label">متا ها</label>
+            <p-chips
+              [addOnTab]="true"
+              [addOnBlur]="true"
+              formControlName="metaDescription"
+            ></p-chips>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col d-flex flex-row-reverse">
+            <button
+              type="submit"
+              pButton
+              label="ثبت"
+              [disabled]="form.invalid"
+              class="panel-dark-button mt-3"
+            ></button>
+          </div>
+        </div>
+
+    </form>
+  </div>
+</div>

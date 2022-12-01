@@ -1,0 +1,12 @@
+input,
+:host::ng-deep .p-inputtext,
+:host::ng-deep .p-dropdown,
+:host::ng-deep .p-chips,
+:host::ng-deep .p-multiselect,
+.p-inputtext,
+.p-dropdown,
+.p-chips,
+.p-multiselect textarea {
+  width: 100% !important;
+}
+

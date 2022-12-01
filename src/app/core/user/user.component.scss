@@ -1,0 +1,84 @@
+:host::ng-deep.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+:host::ng-deep.sidenav {
+  width: 220px;
+  background: #252525;
+  border-left: none;
+
+}
+
+:host::ng-deep.p-panelmenu .p-panelmenu-panel .p-panelmenu-header > a{
+  border-radius: 30px;
+  margin: 5px 10px;
+}
+:host::ng-deep.p-panelmenu .p-menuitem-text{
+  font-size: 14px;
+  outline-color: transparent;
+    outline-style: none;
+    outline-width: 0;
+}
+:host::ng-deep.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+
+.profile{
+  border-radius: 100px;
+  max-width: 100px;
+}
+
+
+
+:host::ng-deep .p-panelmenu .p-panelmenu-header>a {
+  color: #fff;
+  background: transparent;
+  font-weight: 300;
+}
+
+:host::ng-deep .p-panelmenu .p-panelmenu-header>a .p-menuitem-icon,
+:host::ng-deep .p-panelmenu .p-panelmenu-header>a .p-panelmenu-icon {
+  margin-left: 0.5rem;
+}
+
+:host::ng-deep .pi-chevron-right:before {
+  content: "\e900";
+}
+
+:host::ng-deep .p-panelmenu .p-panelmenu-header:not(.p-highlight):not(.p-disabled)>a:hover,
+:host::ng-deep .p-panelmenu .p-panelmenu-header.p-highlight:not(.p-disabled)>a:hover {
+  background: #FAFAFA;
+  border-color: #FAFAFA;
+  color: #252525;
+}
+
+:host::ng-deep  .p-panelmenu .p-panelmenu-header > a:focus {
+  box-shadow: 0 0 0 0.2rem #a2a2a2 !important;
+}
+
+:host::ng-deep .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
+  background-color: #FAFAFA;
+  color: #252525;
+}
+
+
+
+:host::ng-deep.p-toolbar {
+  background: #252525 !important;
+  height: 70px;
+}
+
+:host ::ng-deep .mat-list-item-content {
+  font-size: 13px;
+}
+
+.img-user {
+  width: 80px;
+  display: block;
+  margin: auto;
+  padding-top: 25px;
+}
+
+

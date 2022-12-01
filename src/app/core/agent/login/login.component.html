@@ -1,0 +1,93 @@
+<p-toast position="center"></p-toast>
+<div class="px-3 pt-5">
+  <div class="theme-container">
+    <div class="row justify-content-center my-5">
+      <div class="mdc-card p-3 p-relative mw-500px">
+        <div class="container-fluid">
+          <div class="row justify-content-center text-center">
+            <div class="col-12">
+              <h1>ورود</h1>
+            </div>
+          </div>
+
+          <form (ngSubmit)="login()" [formGroup]="form" class="w-100">
+            <div class="row justify-content-center">
+              <div class="col-12 mt-4">
+                <span class="p-input-icon-right w-100">
+                  <i class="pi pi-user"></i>
+                  <input
+                    class="form-control"
+                    formControlName="userName"
+                    name="userName"
+                    pInputText
+                    placeholder="نام کاربری"
+                    required
+                  />
+                </span>
+
+                <ul
+                  class="mt-1 text-right list-inline"
+                  *ngFor="let error of errorMessages.userName"
+                >
+                  <li
+                    class="
+                      font-small
+                      text-danger
+                      font-weight-bold
+                      list-inline-item
+                    "
+                    *ngIf="
+                      form.get('userName').hasError(error.type) &&
+                      (form.get('userName').dirty || form.get('userName').touched)
+                    "
+                  >
+                    {{ error.message }}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12">
+                <span class="p-input-icon-right w-100">
+                  <i class="pi pi-key"></i>
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="password"
+                    name="password"
+                    pInputText
+                    placeholder="رمزعبور"
+                    required
+                  />
+                </span>
+
+                <ul
+                  class="mt-1 text-right list-inline"
+                  *ngFor="let error of errorMessages.password"
+                >
+                  <li
+                    class="
+                      font-small
+                      text-danger
+                      font-weight-bold
+                      list-inline-item
+                    "
+                    *ngIf="
+                      form.get('password').hasError(error.type) &&
+                      (form.get('password').dirty || form.get('password').touched)
+                    "
+                  >
+                    {{ error.message }}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-12 my-5 text-center">
+                <button class="green-button" [disabled]="form.invalid">
+                  ورود
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

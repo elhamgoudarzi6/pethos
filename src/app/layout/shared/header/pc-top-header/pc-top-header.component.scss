@@ -1,0 +1,48 @@
+.top-app-bar {
+  background-color: var(--color-green);
+  color: #fff;
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+  z-index: 4;
+
+}
+.top-bar-item-text{
+  font-family: IRANSans_Light!important;
+
+}
+.top-toolbar {
+  position: relative;
+  height: 36px;
+  font-size: 12px;
+  padding: 0 16px;
+  z-index: 99;
+
+}
+#top-toolbar .mdc-button {
+  color: inherit;
+  font-size: 12px;
+  padding: 0 10px;
+}
+.top-toolbar .v-divider {
+  width: 1px;
+  height: 26px;
+  margin: 0 16px;
+  background-color: var(--color-grey);
+}
+.top-bar-item{
+  line-height: 25px;
+}
+
+.dropdown-item {
+  text-align: right !important;
+  font-size: 12px;
+
+}
+
+.account-btn{
+  font-size: 12px;
+}

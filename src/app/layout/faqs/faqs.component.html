@@ -1,0 +1,26 @@
+
+    <section class="breadcrumbs">
+      <div class="container">
+        <ol class="pb-0">
+          <li><a routerLink="/"><i class="pi pi-home"></i></a></li>
+          <li>سوالات متداول</li>
+        </ol>
+      </div>
+    </section>
+    <div class="px-3 py-4">
+      <div class="theme-container">
+    <div class="row m-0 justify-content-center">
+      <mat-accordion class="w-100">
+        <mat-expansion-panel *ngFor="let item of faqs">
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{item.question}} </mat-panel-title>
+            <mat-panel-description> {{item.category}} </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p class="text-right text-justify">
+            {{item.reply}}
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

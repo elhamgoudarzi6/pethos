@@ -1,0 +1,77 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <label class="panel-form-label">تصویر</label>
+          <p-fileUpload
+            chooseLabel="انتخاب تصویر"
+            uploadLabel="آپلود تصویر"
+            cancelLabel="انصراف"
+            [customUpload]="true"
+            (uploadHandler)="onFileUpload($event)"
+            invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+            invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+            accept="image/jpeg,image/png"
+            [maxFileSize]="2000000"
+          >
+          </p-fileUpload>
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.imageurl"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('imageurl').hasError(error.type) &&
+                (form.get('imageurl').dirty || form.get('imageurl').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">لینک</label>
+          <input name="link" type="text" pInputText formControlName="link" />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">تگ</label>
+          <input name="tag" type="text" pInputText formControlName="tag" />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.tag"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('tag').hasError(error.type) &&
+                (form.get('tag').dirty || form.get('tag').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            type="submit"
+            pButton
+            label="ثبت"
+            [disabled]="form.invalid"
+            class="panel-dark-button mt-3"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

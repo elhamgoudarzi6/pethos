@@ -1,0 +1,98 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+
+
+<p-tabView class="w-100">
+  <p-tabPanel header="تغییر نام کاربری">
+    <form [formGroup]="usernameForm" (ngSubmit)="changeUsername()" class="w-100">
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">نام کاربری</label>
+          <input
+            name="userName"
+            type="text"
+            pInputText
+            formControlName="userName"
+          />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of usernameErrorMessages.userName"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+              usernameForm.get('userName').hasError(error.type) &&
+                (usernameForm.get('userName').dirty || usernameForm.get('userName').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            type="submit"
+            pButton
+            label="ویرایش"
+            [disabled]="usernameForm.invalid"
+            class="panel-dark-button mt-3"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </p-tabPanel>
+  <p-tabPanel header="تغییر رمزعبور">
+    <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="w-100">
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">رمز عبور</label>
+          <input
+          pInputText
+            type="password"
+            name="password"
+            type="text"
+            formControlName="password"
+          />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of passwordErrorMessages.password"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+              passwordForm.get('password').hasError(error.type) &&
+                (passwordForm.get('password').dirty || passwordForm.get('password').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            type="submit"
+            pButton
+            label="ویرایش"
+            [disabled]="passwordForm.invalid"
+            class="panel-dark-button mt-3"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </p-tabPanel>
+</p-tabView>
+
+
+
+  </div>
+</div>

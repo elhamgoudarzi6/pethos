@@ -1,0 +1,16 @@
+@media screen and (max-width: 1018px) {
+  .mobile-header {
+    display: block;
+  }
+  .pc-header {
+    display: none;
+  }
+}
+@media screen and (min-width: 1018px) {
+  .mobile-header {
+    display: none;
+  }
+  .pc-header {
+    display: block;
+  }
+}

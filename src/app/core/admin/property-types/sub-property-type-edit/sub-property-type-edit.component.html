@@ -1,0 +1,101 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">دسته بندی</label>
+          <p-dropdown
+            appendTo="body"
+            emptyFilterMessage="نتیجه ای یافت نشد"
+            [options]="types"
+            formControlName="propertyTypeID"
+            optionLabel="title"
+            [filter]="true"
+            placeholder="-- انتخاب کنید --"
+          >
+            <ng-template pTemplate="selectedItem">
+              <div
+                class="state-item state-item-value"
+                *ngIf="form.controls['propertyTypeID'].value"
+              >
+                <div>{{ form.controls["propertyTypeID"].value.title }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-category pTemplate="item">
+              <div class="state-item text-right">
+                <div class="text-right">{{ category.title }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.propertyTypeID"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('propertyTypeID').hasError(error.type) &&
+                (form.get('propertyTypeID').dirty ||
+                  form.get('propertyTypeID').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">عنوان</label>
+          <input
+            name="title"
+            type="text"
+            pInputText
+            placeholder="عنوان"
+            formControlName="title"
+          />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.title"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('title').hasError(error.type) &&
+                (form.get('title').dirty || form.get('title').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+    
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <label class="panel-form-label">تصویر </label>
+          <p-fileUpload chooseLabel="انتخاب تصویر" uploadLabel="آپلود تصویر" cancelLabel="انصراف" [customUpload]="true"
+            (uploadHandler)="onFileUpload($event)" invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+            invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد" accept="image/jpeg,image/png"
+            [maxFileSize]="2000000">
+          </p-fileUpload>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            type="submit"
+            pButton
+            label="ویرایش"
+            [disabled]="form.invalid"
+            class="panel-dark-button mt-3"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

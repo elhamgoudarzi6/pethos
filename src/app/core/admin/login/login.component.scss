@@ -1,0 +1,99 @@
+.mdc-card {
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+:host::ng-deep .p-password,
+:host::ng-deep .p-password input {
+  width: 100%;
+}
+
+:host::ng-deep .p-password-panel .p-password-info {
+  width: 100% !important;
+  text-align: right !important;
+  font-family: IRANSans_Light !important;
+}
+
+.terms-text,
+.terms-text a {
+  font-size: 12px;
+}
+
+.login-link {
+  font-size: 13px;
+}
+
+
+::ng-deep .main-pc-toolbar,
+::ng-deep .main-mobile-toolbar {
+  background-color: #FFFFFF;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+::ng-deep .main-pc-toolbar .menu-img,
+::ng-deep .main-mobile-toolbar .menu-img {
+  fill: var(--color-green);
+}
+
+::ng-deep .main-pc-toolbar .nav-link {
+  color: rgba($color: #000000, $alpha: .8) !important;
+}
+
+
+
+.clockdiv {
+  padding: 5px;
+  border-radius: 3px;
+  background: var(--color-green);
+
+  display: inline-block;
+}
+
+.clockdiv>span {
+  padding: 10px;
+  background: #badd9b;
+  border-radius: 3px;
+  font-family: IRANSans_Bold;
+  font-size: larger;
+  color: var(--color-green);
+  ;
+  display: inline-block;
+}
+
+:host::ng-deep .otp-input {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+@media screen and (max-width: 767px) {
+  :host::ng-deep .otp-input {
+    width: 30px !important;
+    height: 30px !important;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  :host::ng-deep .otp-input {
+    width: 25px !important;
+    height: 25px !important;
+  }
+}
+
+.p-component,
+.p-component * {
+  box-sizing: border-box;
+}
+
+.p-dropdown-label,
+input,
+textarea {
+  font-family: IRANSans_Light !important;
+}
+
+:host::ng-deep .p-dialog .p-dialog-content {
+  padding: 1rem 1.5rem 2rem 1.5rem !important;
+}

@@ -1,0 +1,8 @@
+:host::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-color: #252525 !important;
+  color: #252525 !important;
+}
+
+:host::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+  box-shadow: inset 0 0 0 0.2rem #dbdbdb !important;
+}

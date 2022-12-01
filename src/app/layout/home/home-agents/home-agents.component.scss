@@ -1,0 +1,50 @@
+.section.agents {
+  background-image: url(../../../../assets/images/agents.jpg);
+}
+
+.agent-card {
+  border-radius: 4px;
+  background-color: #fff;
+  background-color: var(--mdc-theme-surface, #fff);
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%), 0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+}
+.text-title{
+  font-size: 15px;
+
+}
+.text-muted{
+  font-family: IRANSans_Light !important;
+}
+
+
+:host::ng-deep .owl-carousel .owl-item {
+  margin-bottom: 20px;
+}
+:host::ng-deep .owl-prev,
+:host::ng-deep .owl-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+:host::ng-deep .owl-prev {
+  left: 0;
+}
+:host::ng-deep .owl-next {
+  right: 0;
+}
+:host::ng-deep .owl-theme .owl-nav [class*=owl-] {
+  color: #e0e0e0 !important;
+  font-size: 8px;
+
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: var(--color-green);
+}
+
+

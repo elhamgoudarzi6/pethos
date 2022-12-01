@@ -1,0 +1,48 @@
+<p-toast position="center"></p-toast>
+
+<div class="px-3">
+  <div class="theme-container">
+    <div class="agent-detail-card my-5 p-5">
+      <div class="row agent-wrapper">
+        <div class="col-xs-12 col-sm-6 col-md-4 p-3">
+          <img *ngIf="agent.image === null || agent.image === ''" src="../../../assets/images/user-default.png"
+            class="img-fluid" />
+          <img *ngIf="agent.image !== null || agent.image !== ''" [src]="agent.image" class="img-fluid" />
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 p-3">
+          <h2 class="fw-600">{{ agent.fullName }}</h2>
+          <p-rating [iconOnStyle]="{'color':'orange'}" [ngModel]="agentRating | number : '1.2-2'" readonly="true"
+            stars="5" [cancel]="false"></p-rating>
+          <p class="mt-3 text-muted fw-500">
+            {{ agent.info }}
+          </p>
+          <p class="row justify-content-start">
+            <span class="mx-2 text-muted fw-500">مجموعه: {{agent.Pethos[0].title}} / {{agent.SubPethos[0].title}} /
+              {{agent.SubSubPethos[0].title}}</span>
+          </p>
+          <p class="row justify-content-start">
+            <span class="mx-2 text-muted fw-500">سطح: {{agent.AgentLevel[0].level}}</span>
+          </p>
+          <p class="row justify-content-start">
+            <img [src]="agent.SubPropertyType[0].image" class="img-icon" />
+            <!-- <i class="material-icons primary-color" title="Organization">business</i> -->
+            <span class="mx-2 text-muted fw-500">{{agent.SubPropertyType[0].title}}</span>
+          </p>
+          <p class="row justify-content-start">
+            <i class="material-icons primary-color">call</i><span class="mx-2 text-muted fw-500">{{ agent.mobile
+              }}</span>
+          </p>
+          <p class="row justify-content-start">
+            <i class="material-icons primary-color">star</i><span class="mx-2 text-muted fw-500">امتیاز: {{
+              agentRating}} </span>
+          </p>
+          <div class="row justify-content-center">
+            <span style="font-family:IRANSans_Bold;font-size: 14px;padding-left: 10px;"> ثبت امتیاز: </span>
+            <p-rating [iconOnStyle]="{'color':'orange'}" (onRate)="onRateChange($event)" [(ngModel)]="rate"
+              [cancel]="false"></p-rating>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

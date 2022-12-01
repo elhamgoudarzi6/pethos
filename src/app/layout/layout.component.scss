@@ -1,0 +1,22 @@
+#back-to-top {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  left: 20px;
+  bottom: 20px;
+  opacity: .5;
+  color: #fff;
+  background-color: rgba(0, 0, 0, .75);
+  border-radius: 50%;
+  transition: 0.3s;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  display: block;
+  cursor: pointer;
+  z-index: 10;
+  text-align: center;
+}
+
+

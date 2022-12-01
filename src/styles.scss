@@ -1,0 +1,740 @@
+/* You can add global styles to this file, and also import other style files */
+@import "assets/fonts/font-awesome/css/all.min.css";
+
+@font-face {
+  font-family: 'IRANSans_Bold';
+  src: url('/assets/fonts/iran-sans/IRANSansWeb(FaNum)_Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'IRANSans_Light';
+  src: url('/assets/fonts/iran-sans/IRANSansWeb(FaNum)_Light.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  outline: none;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+body {
+  font-family: IRANSans_Light;
+  font-size: 14px;
+  line-height: 1.7;
+  direction: rtl;
+  background-color: #fcfcfc;
+  color: rgba(0, 0, 0, .87);
+}
+
+a,
+a:hover {
+  text-decoration: none;
+  outline: none;
+  color: inherit;
+}
+
+p,
+section,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+button,
+input,
+textarea,
+td,
+th,
+small {
+  font-family: IRANSans_Bold !important;
+}
+
+a {
+  font-family: IRANSans_Bold !important;
+}
+
+a:hover,
+.btn-link:hover {
+  text-decoration: none !important;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: none !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+i.fa,
+i.far,
+i.fas,
+i.fao,
+i.fab {
+  vertical-align: middle;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+ul {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0px !important;
+}
+
+.btn-link:focus {
+  text-decoration: none !important;
+}
+
+button:focus:not(:focus-visible) {
+  box-shadow: none !important;
+}
+
+.font-iran-bold {
+  font-family: IRANSans_Bold !important;
+}
+
+
+.font-iran-light {
+  font-family: IRANSans_Light !important;
+}
+
+:root {
+  --color-green: #689F38;
+  --color-orange: #f45050;
+  --color-grey: #9c9c9c;
+}
+
+.theme-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.primary-color {
+  color: var(--color-green) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-green) !important;
+  color: white;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.p-dropdown-label,
+input,
+textarea {
+  font-family: IRANSans_Light !important;
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+  padding: 40px 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px !important;
+  position: relative;
+}
+
+.section-title:after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 160px;
+  margin: 0 auto;
+  height: 2px;
+  background-color: var(--color-green);
+}
+
+.material-icons.mat-icon-sm {
+  font-size: 18px !important;
+  line-height: 25px !important;
+  height: 18px !important;
+  width: 18px !important;
+}
+
+.pb-70 {
+  padding-bottom: 70px;
+}
+
+.fw-500 {
+  font-weight: 500 !important;
+}
+
+.fw-600 {
+  font-weight: 600 !important;
+}
+
+
+.green-button {
+  color: white;
+  background-color: var(--color-green);
+  border-color: transparent;
+  border-radius: 4px;
+  padding: 8px 10px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: var(--color-green) !important;
+}
+
+.green-button:active,
+.green-button:hover,
+.p-button.green-button:active,
+.p-button.green-button:hover {
+  background: var(--color-green);
+  color: #ffffff;
+  border-color: var(--color-green);
+}
+
+.white-flat-button {
+  color: var(--color-green);
+  background-color: white;
+  border-color: transparent;
+  border-radius: 4px;
+  border: 1px solid var(--color-green);
+  padding: 8px 10px;
+}
+
+.white-flat-button:active,
+.white-flat-button:hover {
+  background: var(--color-green);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.white-button {
+  color: var(--color-green);
+  background-color: white;
+  border-color: transparent;
+  border-radius: 4px;
+  padding: 8px 10px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.white-button:active,
+.white-button:hover,
+.p-button.white-button:active,
+.p-button.white-button:hover {
+  background: white;
+  color: var(--color-green);
+  border-color: white;
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.p-inputtext:enabled:hover,
+input:hover,
+textarea:hover {
+  border-color: var(--color-green) !important;
+}
+
+.p-dropdown:not(.p-disabled):hover,
+.p-multiselect:not(.p-disabled):hover {
+  border-color: var(--color-green) !important;
+  box-shadow: 0 0 0 0.2rem #ccdbbf !important;
+
+}
+
+.p-inputtext:enabled:focus,
+input:focus,
+textarea:focus,
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  outline: 0 none;
+  outline-offset: 0;
+  box-shadow: 0 0 0 0.2rem #ccdbbf !important;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: var(--color-green) !important;
+}
+
+.p-checkbox-label {
+  font-family: IRANSans_Light !important;
+}
+
+.p-checkbox .p-checkbox-box.p-highlight {
+  border-color: var(--color-green) !important;
+  background: var(--color-green) !important;
+}
+
+.p-dropdown-item, .p-multiselect-item {
+  text-align: right !important;
+}
+
+.text-muted {
+  color: #4a4e52 !important
+}
+
+button:hover,
+a:hover {
+  cursor: pointer;
+}
+
+
+
+.spinner-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background: #fff;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition: visibility 0.5s, opacity 0.3s linear;
+  -moz-transition: visibility 0.5s, opacity 0.3s linear;
+  transition: visibility 0.5s, opacity 0.3s linear;
+}
+
+.spinner-wrapper .spinner-container {
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer {
+  vertical-align: middle;
+  height: 100%;
+  display: table-cell;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner {
+  position: relative;
+  margin: 0 auto;
+  height: 50px;
+  width: 70px;
+  box-sizing: border-box;
+  animation: main 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .mask {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 3px;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .plane {
+  background: var(--color-green);
+  ;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .left {
+  width: 18px;
+  height: 100%;
+  left: 0;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .left .plane {
+  bottom: -100%;
+  animation: anim1 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .top {
+  width: 100%;
+  height: 18px;
+  top: 0;
+  border-radius: 1px;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .top .plane {
+  left: -100%;
+  animation: anim2 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .right {
+  width: 18px;
+  height: 100%;
+  right: 0;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .right .plane {
+  top: -100%;
+  animation: anim3 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .triangle {
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: -25px;
+  left: 10px;
+  transform: rotate(-45deg);
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .triangle .triangle-plane {
+  border: 50px solid transparent;
+  border-right: 0;
+  border-top-color: var(--color-green);
+  height: 0;
+  width: 0;
+  position: absolute;
+  animation: anim4 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .top-left {
+  width: 100%;
+  height: 9px;
+  transform: rotate(135deg);
+  left: -22px;
+  top: -28px;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .top-left .plane {
+  left: 100%;
+  animation: anim5 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .top-right {
+  width: 100%;
+  height: 9px;
+  transform: rotate(45deg);
+  right: -22px;
+  top: -28px;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer .spinner .top-right .plane {
+  right: 100%;
+  animation: anim6 2s ease-in infinite;
+}
+
+.spinner-wrapper .spinner-container .spinner-outer p.spinner-text {
+  font-family: 'IRANSans_Bold';
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 15px;
+}
+
+@keyframes main {
+  0% {
+    opacity: 0;
+  }
+
+  10%,
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes anim1 {
+  0% {
+    bottom: -100%;
+  }
+
+  10%,
+  100% {
+    bottom: 0%;
+  }
+}
+
+@keyframes anim2 {
+
+  0%,
+  10% {
+    left: -100%;
+  }
+
+  20%,
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes anim3 {
+
+  0%,
+  20% {
+    top: -100%;
+  }
+
+  30%,
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes anim4 {
+
+  0%,
+  30% {
+    top: -100%;
+  }
+
+  40%,
+  100% {
+    top: 0%;
+  }
+}
+
+@keyframes anim5 {
+
+  0%,
+  40% {
+    left: 100%;
+  }
+
+  50%,
+  100% {
+    left: 0%;
+  }
+}
+
+@keyframes anim6 {
+
+  0%,
+  50% {
+    right: 100%;
+  }
+
+  60%,
+  100% {
+    right: 0%;
+  }
+}
+
+
+
+:host ::ng-deep .p-toast .p-toast-message {
+  border-width: 0 6px 0 0 !important;
+}
+
+:host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {
+  margin: 0 1rem 0 0 !important;
+  text-align: right;
+}
+
+:host ::ng-deep .p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+  margin-right: 1rem !important;
+  margin-left: none !important;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-footer {
+  text-align: left !important;
+}
+
+.pnl-content .box {
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  border-top: 2px #252525 solid;
+  border-radius: 4px;
+}
+
+.panel-title {
+  font-size: 16px;
+  font-family: IRANSans_Bold;
+  margin-bottom: 15px;
+}
+
+.panel-breadcrumb li {
+  margin: 0;
+  font-size: 13px;
+  color: #5f5f5f;
+  font-family: IRANSans_Light;
+}
+
+.panel-breadcrumb li:not(:last-child)::after {
+  margin: 0 5px;
+  content: "/";
+}
+
+.panel-breadcrumb li.current {
+  color: #969696;
+}
+
+.pnl-content .p-inputtext,
+.pnl-content input,
+.pnl-content textarea {
+  width: 100% !important;
+}
+
+
+.pnl-content .p-inputtext:enabled:hover,
+.pnl-content input:hover,
+.pnl-content textarea:hover {
+  border-color: #252525 !important;
+}
+
+.pnl-content .p-dropdown:not(.p-disabled):hover {
+  border-color: #252525 !important;
+  box-shadow: 0 0 0 0.2rem #a2a2a2 !important;
+}
+
+.p-chips-multiple-container {
+  height: 100% !important;
+}
+
+.p-chips-multiple-container,
+.p-chips-multiple-container input {
+  height: 30px;
+}
+
+
+.p-chips .p-chips-multiple-container .p-chips-token {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem;
+  background: #dcdcdc !important;
+}
+
+.p-chips .p-chips-multiple-container .p-chips-token .p-chips-token-icon {
+  margin-right: 0.5rem !important;
+}
+
+.p-chips-multiple-container.p-focus,
+.p-chips-multiple-container:hover {
+  box-shadow: none !important;
+  border-color: unset !important;
+}
+
+.pnl-content .p-inputtext:enabled:focus,
+.pnl-content .p-chips:enabled:focus,
+.pnl-content input:focus,
+.pnl-content textarea:focus,
+.pnl-content .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: 0 0 0 0.2rem #a2a2a2 !important;
+}
+
+.pnl-content .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  border-color: #252525 !important;
+}
+
+.pnl-content .p-checkbox .p-checkbox-box.p-highlight {
+  border-color: #252525 !important;
+  background: #252525 !important;
+}
+
+
+.panel-form-label {
+  font-family: 'IRANSans_Bold';
+  font-size: 13px;
+  display: block;
+}
+
+.panel-dark-button {
+  background: #252525;
+  border: 1px solid #252525;
+}
+
+.panel-dark-button:active,
+.panel-dark-button:hover {
+  background: transparent !important;
+  color: #252525 !important;
+  border-color: #252525 !important;
+}
+
+.panel-border-button {
+  background: transparent;
+  border: 1px solid #252525;
+  color: #252525;
+}
+
+.panel-border-button:active,
+.panel-border-button:hover {
+  background: #252525 !important;
+  border: 1px solid #252525 !important;
+  color: #fff !important;
+}
+
+.p-fileupload-buttonbar .p-button {
+  background: transparent !important;
+  border: 1px solid #252525 !important;
+  color: #252525 !important;
+  font-family: IRANSans_Light !important;
+}
+
+.p-fileupload-buttonbar .p-button:focus {
+  box-shadow: 0 0 0 0.2rem #a2a2a2 !important;
+}
+
+.p-button .p-button-icon-left {
+  margin-right: 0 !important;
+  margin-left: 0.5rem !important;
+}
+
+
+.p-datatable .p-datatable-header {
+  background: transparent !important;
+  border: none !important;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+  text-align: right !important;
+  background: transparent !important;
+  margin-top: 15px;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  text-align: right !important;
+}
+
+.p-fileupload-row .p-button-icon-only {
+  background-color: transparent !important;
+  border-color: #1b1b1b !important;
+  color: #1b1b1b !important;
+}
+
+.p-toast .p-toast-message .p-toast-message-content .p-toast-message-text {
+  margin: 0 1rem 0 0 !important;
+  text-align: right !important;
+}
+
+.p-toast .p-toast-message.p-toast-message-success,
+.p-toast .p-toast-message.p-toast-message-error {
+  border-width: 0 6px 0 0 !important;
+}

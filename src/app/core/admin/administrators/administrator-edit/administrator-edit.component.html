@@ -1,0 +1,62 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100">
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">نام و نام خانوادگی</label>
+          <input
+            name="fullName"
+            type="text"
+            pInputText
+            formControlName="fullName"
+          />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.fullName"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('fullName').hasError(error.type) &&
+                (form.get('fullName').dirty || form.get('fullName').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <label class="panel-form-label">تصویر پروفایل</label>
+          <p-fileUpload
+            chooseLabel="انتخاب تصویر"
+            uploadLabel="آپلود تصویر"
+            cancelLabel="انصراف"
+            [customUpload]="true"
+            (uploadHandler)="onFileUpload($event)"
+            invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+            invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+            accept="image/jpeg,image/png"
+            [maxFileSize]="2000000"
+          >
+          </p-fileUpload>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            type="submit"
+            pButton
+            label="ویرایش"
+            [disabled]="form.invalid"
+            class="panel-dark-button mt-3"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

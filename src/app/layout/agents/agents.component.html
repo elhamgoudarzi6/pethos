@@ -1,0 +1,62 @@
+<div class="header-image-wrapper">
+  <div class="bg"></div>
+  <div class="mask"></div>
+  <div class="header-image-content mh-200">
+    <p class="desc">مشاوران</p>
+  </div>
+</div>
+<section class="breadcrumbs">
+  <div class="container">
+    <ol class="pb-0">
+      <li><a routerLink="/"><i class="pi pi-home"></i></a></li>
+      <li>مشاوران</li>
+    </ol>
+  </div>
+</section>
+<div  *ngIf="agents.length > 0">
+  <div class="px-3">
+    <div class="theme-container">
+      <div class="container-fluid agent-wrapper p-0">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 p-3" *ngFor="let item of agents">
+            <div class="agent-card o-hidden">
+              <div>
+                <img [src]="item.image" alt="slide image" class="img-fluid" />
+              </div>
+              <div class="p-3 text-right">
+                <h2 class="fw-600" (click)="redirectToDetail(item._id)">{{item.fullName}}</h2>
+                <div *ngFor="let itemRate of agentRating">
+                  <p-rating *ngIf="itemRate.id===item._id" [iconOnStyle]="{'color':'orange'}"
+                    [ngModel]="itemRate.rate | number : '1.2-2'" readonly="true" stars="5" [cancel]="false"></p-rating>
+                </div>
+                <p style="font-family: IRANSans_Light !important;" class="mt-3 text-muted fw-500">
+                  {{item.info}}
+                </p>
+                <p class="row align-self-center d-flex">
+                  <img [src]="item.SubPropertyType[0].image" class="img-icon" />
+                  <span class="mx-2 text-muted fw-500">{{item.SubPropertyType[0].title}}</span>
+                </p>
+                <p class="row align-self-center d-flex">
+                  <i class="material-icons primary-color">call</i><span
+                    class="mx-2 text-muted fw-500">{{item.mobile}}</span>
+                </p>
+                <div *ngFor="let itemRate of agentRating">
+                  <p class="row align-self-center d-flex" *ngIf="itemRate.id===item._id"> <i
+                      class="material-icons primary-color">star</i> امتیاز: {{itemRate.rate}}</p>
+                </div>
+                <div class="row pb-3">
+                  <div class="divider"></div>
+                </div>
+                <div class="row justify-content-center">
+                  <div class="col d-flex flex-row-reverse">
+                    <a class="white-flat-button" (click)="redirectToDetail(item._id)"> مشاهده پروفایل </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
