@@ -1,0 +1,221 @@
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-lg-6 col-sm-12 align-self-center text-right">
+            <h2 class="panel-title">پروفایل</h2>
+          </div>
+          <div class="col-lg-6 col-sm-12 align-self-center">
+            <ul class="list-inline panel-breadcrumb">
+              <li class="list-inline-item pointer" [routerLink]="['/']">پتوس</li>
+              <li class="list-inline-item pointer" [routerLink]="['/user']">داشبورد</li>
+              <li class="list-inline-item current">پروفایل</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-3 col-sm-12">
+      <div class="box text-right text-center">
+        <img
+          [src]="user.image"
+          *ngIf="user.image != null || user.image != ''"
+          class="img-fluid d-block mx-auto profile"
+          width="100"
+        />
+        <img
+          src="../../../assets/images/user-default-black.png"
+          *ngIf="user.image == null || user.image == ''"
+          class="img-fluid d-block mx-auto profile"
+          width="100"
+        />
+
+        <h3 class="my-3">{{ user.fullName }}</h3>
+
+        <mat-divider></mat-divider>
+
+        <ul class="list-group my-3">
+          <li class="list-group-item border-0 text-right">
+            <b>سطح</b> <a class="float-left text-muted">{{ user.level }}</a>
+          </li>
+          <mat-divider></mat-divider>
+          <li class="list-group-item border-0 text-right">
+            <b>امتیاز</b> <a class="float-left text-muted">{{ user.rating }}</a>
+          </li>
+          <mat-divider></mat-divider>
+          <li class="list-group-item border-0 text-right">
+            <b>موجودی کیف پول</b> <a class="float-left text-muted">{{ user.walletValue }}</a>
+          </li>
+          <mat-divider></mat-divider>
+          <li class="list-group-item border-0 text-right">
+            <b>تعداد املاک ثبتی</b> <a class="float-left text-muted">{{countPropertyByUser}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-9 col-sm-12">
+      <div class="box text-right mr-lg-3">
+        <p-tabView>
+          <p-tabPanel header="تغییر اطلاعات کاربری">
+            <form
+              [formGroup]="userForm"
+              (ngSubmit)="updateUser()"
+              class="w-100"
+            >
+              <div class="row">
+                <div class="col-lg-6 col-sm-12 mb-3">
+                  <label class="panel-form-label">نام و نام خانوادگی</label>
+                  <input
+                    name="fullName"
+                    type="text"
+                    pInputText
+                    formControlName="fullName"
+                  />
+                </div>
+                
+                <div class="col-lg-6 col-sm-12 mb-3">
+                  <label class="panel-form-label">تاریخ تولد</label>
+                  <p-inputMask
+                  formControlName="birthDate"
+                  name="birthDate"
+                ></p-inputMask>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                  <label class="panel-form-label">تصویر پروفایل</label>
+                  <p-fileUpload
+                    chooseLabel="انتخاب تصویر"
+                    uploadLabel="آپلود تصویر"
+                    cancelLabel="انصراف"
+                    [customUpload]="true"
+                    (uploadHandler)="onFileUpload($event)"
+                    invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+                    invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+                    accept="image/jpeg,image/png"
+                    [maxFileSize]="2000000"
+                  >
+                  </p-fileUpload>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col d-flex flex-row-reverse">
+                  <button
+                    type="submit"
+                    pButton
+                    label="ویرایش"
+                    [disabled]="userForm.invalid"
+                    class="panel-dark-button mt-3"
+                  ></button>
+                </div>
+              </div>
+            </form>
+          </p-tabPanel>
+          <p-tabPanel header="تغییر شماره موبایل">
+            <form (ngSubmit)="sendSMS()" [formGroup]="mobileForm" class="w-100">
+              <div class="row justify-content-center">
+                <div class="col-12 mt-4">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user"></i>
+                    <input
+                      pKeyFilter="int"
+                      class="form-control"
+                      formControlName="mobile"
+                      maxlength="11"
+                      minlength="11"
+                      name="mobile"
+                      pInputText
+                      placeholder="شماره موبایل"
+                      required
+                    />
+                  </span>
+
+                  <ul
+                    class="mt-1 text-right list-inline"
+                    *ngFor="let error of errorMessages.mobile"
+                  >
+                    <li
+                      class="
+                        font-small
+                        text-danger
+                        font-weight-bold
+                        list-inline-item
+                      "
+                      *ngIf="
+                        mobileForm.get('mobile').hasError(error.type) &&
+                        (mobileForm.get('mobile').dirty ||
+                          mobileForm.get('mobile').touched)
+                      "
+                    >
+                      {{ error.message }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col d-flex flex-row-reverse">
+                  <button
+                    type="submit"
+                    pButton
+                    label="ارسال پیام کوتاه"
+                    [disabled]="mobileForm.invalid"
+                    class="panel-dark-button mt-3"
+                  ></button>
+                </div>
+              </div>
+            </form>
+          </p-tabPanel>
+        </p-tabView>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog
+  [(visible)]="display"
+  [style]="{ width: '60vw' }"
+  (onHide)="onCloseDialog()"
+>
+  <ng-template pTemplate="header"> اعتبارسنجی شماره همراه </ng-template>
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <p class="text-right">
+        کد ارسال شده به شماره همراه در کادر زیر وارد نمائید
+      </p>
+    </div>
+
+    <div class="col-12 text-center mb-3">
+      <div class="clockdiv">
+        <span class="seconds">
+          {{ timeLeft }}
+        </span>
+      </div>
+    </div>
+    <div class="col-12 text-center">
+      <ng-otp-input
+        #ngOtpInput
+        (onInputChange)="onOtpChange($event)"
+        [config]="{ length: 5, allowNumbersOnly: true }"
+        dir="ltr"
+        style="font-family: IRANSansWeb"
+        class="text-center"
+      ></ng-otp-input>
+      <p class="text-danger mt-2 mb-3 text-center" *ngIf="invalidSMS">
+        کد وارد شده اشتباه می باشد.
+      </p>
+      <a
+        class="mt-2 mb-3 small text-center"
+        (click)="sendSMS()"
+        *ngIf="resendSMS"
+        >ارسال مجدد کد</a
+      >
+    </div>
+  </div>
+</p-dialog>

@@ -1,0 +1,71 @@
+<div class="section mt-3" *ngIf="news.length > 0">
+  <div class="px-3">
+    <div class="theme-container">
+      <h1 class="section-title">آخرین اخبار</h1>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="recent-blog">
+            <h4>جدیدترین خبرها</h4>
+            <div *ngFor="let i of latestNews">
+              <div class="row">
+                <div class="col-5">
+                  <img class="img-fluid h-100" [src]="i['image']" [alt]="i['imageDescription']">
+                </div>
+                <div class="col-7">
+                  <div class="row justify-content-right mt-3">
+                  <a [routerLink]="['/new',i['_id']]">{{i['title']}}</a>
+                  </div>
+                  <div class="row justify-content-right mt-3">
+                    <p class="row text-right rtl">
+                      <i class="material-icons text-muted">date_range</i>
+                      <span class="mr-2">{{ i.date }}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 ltr">
+          <owl-carousel-o [options]="customOptions">
+            <ng-template carouselSlide *ngFor="let item of news">
+              <div class="news-card news-item">
+                <div class="row justify-content-center new-box">
+                  <div class="col-lg-8 col-md-8 col-sm-12 p-4">
+                    <h3 class="text-right">
+                      <a [routerLink]="['/new',item['_id']]">{{ item.title }}</a>
+                    </h3>
+                    <div class="description text-right text-justify mt-3">
+                      <p class="desc">
+                        {{ item.brief }}
+                      </p>
+                    </div>
+                    <div class="actions row justify-content-center mt-3">
+                      <div class="col-6 align-self-center text-left">
+                        <a class="white-flat-button" [routerLink]="['/new',item['_id']]">جزییات</a>
+                      </div>
+                      <div class="col-6 align-self-center d-flex flex-row-reverse">
+                        <p class="row writer text-right rtl">
+                          <i class="material-icons text-muted">date_range</i>
+                          <span class="mr-2">{{ item.date }}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                    <img [src]="item.image" class="img-fluid w-100 h-100" />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </owl-carousel-o>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <a class="green-button" [routerLink]="['/news']">مشاهده بیشتر</a>
+      </div>
+    </div>
+  </div>
+</div>

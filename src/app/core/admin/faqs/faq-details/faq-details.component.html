@@ -1,0 +1,66 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+></p-confirmDialog>
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <div class="col-12 no-gutters p-0 m-0">
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">سوال</label>
+          <input
+            disabled="disabled"
+            name="question"
+            type="text"
+            pInputText
+            [(ngModel)]="faq.question"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">پاسخ</label>
+          <textarea
+            disabled="disabled"
+            type="reply"
+            name="reply"
+            type="text"
+            rows="5"
+            pInputText
+            [(ngModel)]="faq.reply"
+          ></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">دسته بندی</label>
+          <input
+            disabled="disabled"
+            name="category"
+            type="text"
+            pInputText
+            [(ngModel)]="faq.category"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            pButton
+            label="حذف"
+            class="panel-dark-button mt-3"
+            (click)="deleteFaq()"
+          ></button>
+          <button
+            pButton
+            label="انصراف"
+            class="panel-border-button mt-3 ml-2"
+            (click)="cancel()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

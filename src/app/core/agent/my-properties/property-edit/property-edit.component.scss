@@ -1,0 +1,29 @@
+input,
+:host::ng-deep .p-inputtext,
+:host::ng-deep .p-dropdown,
+:host::ng-deep .p-chips,
+:host::ng-deep .p-multiselect,
+.p-inputtext,
+.p-dropdown,
+.p-chips,
+.p-multiselect textarea {
+  width: 100% !important;
+}
+
+
+:host::ng-deep .p-multiselect-panel .p-multiselect-items .p-multiselect-item .p-checkbox,
+:host::ng-deep .p-multiselect-panel .p-multiselect-header .p-checkbox,
+:host::ng-deep .p-multiselect-panel .p-multiselect-header .p-multiselect-close,
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item .p-checkbox,
+.p-multiselect-panel .p-multiselect-header .p-checkbox,
+.p-multiselect-panel .p-multiselect-header .p-multiselect-close {
+  margin-right: 0.5rem !important;
+  margin-left: unset !important;
+
+}
+
+.pethos-mapbox {
+  height: 500px;
+  width: 100%;
+}
+

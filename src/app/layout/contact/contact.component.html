@@ -1,0 +1,148 @@
+<p-toast position="center"></p-toast>
+<div class="header-image-wrapper">
+  <div class="bg"></div>
+  <div class="mask"></div>
+  <div class="header-image-content home-page offset-bottom">
+    <h1 class="title mb-4">تماس با ما</h1>
+    <p class="desc">سوالی دارید؟ ما در اسرع وقت پاسخگو هستیم.</p>
+  </div>
+</div>
+
+<div class="px-3 mb-5">
+  <div class="theme-container">
+    <div class="mdc-card main-content-header pt-0">
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 font-iran-light">
+          <div class="column justify-content-center mb-4 text-center">
+            <i class="material-icons mat-icon-lg primary-color">home</i>
+            <h3 class="primary-color py-1">آدرس</h3>
+            <span class="text-muted fw-500">خرم آباد، خیابان انقلاب املاک سرمایه</span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 font-iran-light">
+          <div class="column justify-content-center mb-4 text-center">
+            <i class="material-icons mat-icon-lg primary-color">call</i>
+            <h3 class="primary-color py-1">تلفن</h3>
+            <span class="text-muted fw-500">(98) 457-2308</span>
+            <span class="text-muted fw-500 d-block">(212) 457-2309</span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 font-iran-light">
+          <div class="column justify-content-center mb-4 text-center">
+            <i class="material-icons mat-icon-lg primary-color">call</i>
+            <h3 class="primary-color py-1">موبایل</h3>
+            <span class="text-muted fw-500">09161612111</span>
+            <span class="text-muted fw-500 d-block">09161612111</span>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-3 font-iran-light">
+          <div class="column justify-content-center mb-4 text-center">
+            <i class="material-icons mat-icon-lg primary-color">mail_outline</i>
+            <h3 class="primary-color py-1">پست الکترونیکی</h3>
+            <span class="text-muted fw-500">contact@pethos.app</span>
+            <span class="text-muted fw-500 d-block">info@pethos.app</span>
+          </div>
+        </div>
+        <div class="col-xs-12 my-4 px-3">
+          <div class="divider"></div>
+        </div>
+        <h3 class="w-100 text-center py-3">ارسال پیام</h3>
+        <form [formGroup]="form" (ngSubmit)="addContactMessage()" class="w-100">
+          <div class="row justify-content-center w-100 contact pr-4">
+            <div class="col-sm-12 col-md-6 py-2">
+              <input type="text" pInputText formControlName="fullName" name="fullName" class="w-100"
+                placeholder="نام و نام خانوادگی" />
+              <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.fullName">
+                <li class="
+                    font-small
+                    text-danger
+                    font-weight-bold
+                    list-inline-item
+                  " *ngIf="
+                    form.get('fullName').hasError(error.type) &&
+                    (form.get('fullName').dirty || form.get('fullName').touched)
+                  ">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-sm-12 col-md-6 py-2">
+              <input type="text" pInputText formControlName="email" name="email" class="w-100"
+                placeholder="پست الکترونیکی" />
+              <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.email">
+                <li class="
+                    font-small
+                    text-danger
+                    font-weight-bold
+                    list-inline-item
+                  " *ngIf="
+                    form.get('email').hasError(error.type) &&
+                    (form.get('email').dirty || form.get('email').touched)
+                  ">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>
+            <div class="row justify-content-center w-100 contact pr-4">
+              <div class="col-sm-12 col-md-6 py-2">
+                <input type="text" pInputText formControlName="mobile" name="mobile" class="w-100"
+                  placeholder="موبایل" />
+                <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.mobile">
+                  <li class="
+                    font-small
+                    text-danger
+                    font-weight-bold
+                    list-inline-item
+                  " *ngIf="
+                    form.get('mobile').hasError(error.type) &&
+                    (form.get('mobile').dirty || form.get('mobile').touched)
+                  ">
+                    {{ error.message }}
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-12 col-md-6 py-2">
+                <input type="text" pInputText formControlName="title" name="title" class="w-100" placeholder="عنوان" />
+                <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.title">
+                  <li class="
+                    font-small
+                    text-danger
+                    font-weight-bold
+                    list-inline-item
+                  " *ngIf="
+                    form.get('title').hasError(error.type) &&
+                    (form.get('title').dirty || form.get('title').touched)
+                  ">
+                    {{ error.message }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12 py-2">
+              <textarea pInputTextarea formControlName="message" name="message" [rows]="10" class="w-100"
+                placeholder="پیام شما"></textarea>
+              <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.message">
+                <li class="
+                    font-small
+                    text-danger
+                    font-weight-bold
+                    list-inline-item
+                  " *ngIf="
+                    form.get('message').hasError(error.type) &&
+                    (form.get('message').dirty || form.get('message').touched)
+                  ">
+                  {{ error.message }}
+                </li>
+              </ul>
+            </div>
+            <div class="col-xs-12 w-100 py-3 text-center">
+              <button class="green-button" type="submit" [disabled]="form.invalid">
+                ارسال
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

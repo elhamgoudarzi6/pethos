@@ -1,0 +1,24 @@
+header.has-bg-image:not(.main-toolbar-fixed) #main-toolbar {
+  background: transparent !important;
+}
+
+.main-mobile-toolbar {
+  position: relative;
+  height: 72px;
+  padding: 0 16px;
+  transition: 0.2s;
+  z-index: 9;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.menu-img {
+  fill: #FFFFFF;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: rgba($color: #ffffff, $alpha: .8)
+}
+
+

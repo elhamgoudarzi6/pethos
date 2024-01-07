@@ -1,0 +1,12 @@
+:host::ng-deep .p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+  box-shadow: none !important;
+}
+
+:host::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  border-color: #252525;
+  color: #252525;
+}
+.profile{
+  border-radius: 100px;
+  max-width: 100px;
+}

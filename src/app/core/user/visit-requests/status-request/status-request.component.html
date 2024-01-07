@@ -1,0 +1,34 @@
+<div class="container-fluid mt-4 text-right">
+    <div class="row pnl-content">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <p class="pt-3">لیست وضعیت ها</p>
+                <p-table [value]="allStatus">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>وضعیت</th>
+                            <th>تاریخ</th>
+                            <th>ساعت</th>
+                            <th>تایید</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-status let-rowIndex="rowIndex">
+                        <tr>
+                            <td>{{ status.status }}</td>
+                            <td>{{ status.date }}</td>
+                            <td>{{ status.time }}</td>
+                            <td>
+                                <i class="fas fa-check text-success" (click)="deleteStatus(rowIndex)"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td colspan="5" class="text-right">هیچ وضعیتی ثبت نشده است.</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+</div>

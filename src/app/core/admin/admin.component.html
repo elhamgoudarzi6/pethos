@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container" dir="rtl">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <div class="justify-content-center">
+      <div class="col text-center ">
+        <img *ngIf="image == ''" src="../../../assets/images/user-default.png" class="img-fluid profile" />
+        <img *ngIf="image != ''" [src]="image" class="img-fluid profile" />
+      </div>
+      <div class="col text-center">
+        <span class="mx-3 text-white text-center" style="font-family:IRANSans_Bold;">{{fullName}}</span>
+      </div>
+    </div>
+    <p-panelMenu [model]="items" [style]="{'width':'100%','margin-top':'50px'}"></p-panelMenu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <p-toolbar>
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="col text-right">
+            <button pButton pRipple type="button" icon="pi pi-bars" class="p-button-rounded p-button-text text-white"
+              (click)="drawer.toggle()"></button>
+          </div>
+          <div class="col text-right">
+            <span class="mx-3 text-white text-center" style="font-family:IRANSans_Light;">{{ date }}</span>
+            <span class="mx-3 text-white text-center" style="font-family:IRANSans_Light;">{{ time }}</span>
+          </div>
+          <div class="col">
+            <button pButton pRipple type="button" icon="pi pi-power-off"
+              class="p-button-rounded p-button-text text-white" (click)="logOut()"></button>
+          </div>
+        </div>
+      </div>
+    </p-toolbar>
+
+    <ng-content> </ng-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

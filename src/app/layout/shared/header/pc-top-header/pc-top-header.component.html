@@ -1,0 +1,45 @@
+<div class="container-fluid top-app-bar top-toolbar">
+  <div class="row h-100">
+    <div class="col align-self-center">
+      <div class="row fw-500 d-flex pr-3">
+        <span class="d-flex top-bar-item">
+          <a href="tel:+98252525">
+            <i class="fa fa-phone fa-lg"></i>
+            <span class="px-1 top-bar-item-text">(+98) 21 4565 7890</span>
+          </a>
+        </span>
+        <span class="v-divider"></span>
+        <span class="d-flex top-bar-item">
+          <a href="https://www.google.com/maps/place/Khorramabad,+Lorestan+Province,+Iran/@33.4910974,48.2890292,12z/data=!3m1!4b1!4m5!3m4!1s0x3feec6d160352a89:0xbd1bfe089f5e229c!8m2!3d33.4646833!4d48.3389644" target="_blank">
+            <i class="fa fa-map-marked fa-lg"></i>
+          <span class="px-1 top-bar-item-text">خرم آباد،  خیابان انقلاب املاک سرمایه</span>
+        </a>
+        </span>
+        <span class="v-divider"></span>
+        <span class="d-flex top-bar-item">
+          <a href="mailto:info@pethos.app">
+            <i class="fa fa-envelope fa-lg"></i>
+            <span class="px-1 top-bar-item-text">info@pethos.app</span>
+          </a>
+        </span>
+      </div>
+    </div>
+    <div class="col d-flex flex-row-reverse align-self-center">
+      <div class="row fw-500 d-flex pl-3">
+        <div class="btn-group">
+          <button type="button" class="btn btn-link dropdown-toggle text-white p-0 m-0 account-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            حساب کاربری
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" [routerLink]="['/auth']" *ngIf="!isLogged">ثبت نام | ورود</a>
+            <a class="dropdown-item" [routerLink]="['/user']" *ngIf="isLogged">پنل کاربر</a>
+            <a class="dropdown-item" [routerLink]="['/favorites']">علاقه مندی ها</a>
+            <div class="dropdown-divider" *ngIf="isLogged"></div>
+            <a class="dropdown-item" *ngIf="isLogged"  (click)="logOut()">خروج</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

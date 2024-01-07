@@ -1,0 +1,33 @@
+<div class="px-3">
+  <div class="theme-container">
+    <div class="agent-detail-card my-5 p-5">
+      <div class="row agent-wrapper">
+        <div class="col-xs-12 col-sm-12 col-md-5 p-3">
+          <img
+            [src]="news.image"
+            alt="agent-image"
+            class="mw-100 d-block"
+          />
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-7 p-3">
+          <h2 class="fw-600">{{news.title}}</h2>
+          <p class="mt-3 text-muted fw-500">
+            {{news.brief}}
+          </p>
+          <p class="mt-3 text-muted fw-500 mb-4">
+            {{news.details}}
+          </p>
+
+        </div>
+        <div class="col-12 text-right">
+          <p class="m-2 fw-500">تگ های خبر</p>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 p-3">
+          <ng-container *ngFor="let item of news.tags">
+            <p-tag [value]="item"></p-tag>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

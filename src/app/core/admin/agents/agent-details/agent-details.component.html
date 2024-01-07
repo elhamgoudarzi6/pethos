@@ -1,0 +1,79 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog [style]="{ width: '50vw' }" [baseZIndex]="10000"></p-confirmDialog>
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <p *ngIf="agentRating<3" class="text-danger">امتیاز: {{agentRating | number : '1.2-2'}}</p>
+    <p *ngIf="agentRating===3" class="text-warning">امتیاز: {{agentRating | number : '1.2-2'}}</p>
+    <p *ngIf="agentRating>3" class="text-success">امتیاز: {{agentRating | number : '1.2-2'}}</p>
+    <div class="col-12 no-gutters p-0 m-0">
+      <div class="row">
+
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">مجموعه</label>
+          <p-dropdown [options]="pethos" optionLabel="title" [(ngModel)]="selectedLevel" [disabled]="true">
+          </p-dropdown>
+        </div>
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">مجموعه</label>
+          <p-dropdown [options]="subPethos" optionLabel="title" [(ngModel)]="selectedLevel" [disabled]="true">
+          </p-dropdown>
+        </div>
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">مجموعه</label>
+          <p-dropdown [options]="subSubPethos" optionLabel="title" [(ngModel)]="selectedLevel" [disabled]="true">
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">شماره موبایل</label>
+          <input [(ngModel)]="agent.mobile" name="mobile" pInputText placeholder="شماره موبایل" disabled="disabled" />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">نام و نام خانوادگی</label>
+          <input name="fullName" type="text" pInputText [(ngModel)]="agent.fullName" disabled="disabled" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">سطح</label>
+          <p-dropdown [options]="agentLevel" optionLabel="level" [(ngModel)]="selectedLevel" [disabled]="true">
+          </p-dropdown>
+          <label class="panel-form-label mt-1">{{max |number}} - {{min | number}}</label>
+        </div>
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">نوع ملک</label>
+          <p-dropdown [options]="propertyTypes" optionLabel="title" [(ngModel)]="selectedType" [disabled]="true">
+          </p-dropdown>
+        </div>
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">زیر دسته</label>
+          <p-dropdown [options]="subPropertyTypes" optionLabel="title" [(ngModel)]="selectedSubType" [disabled]="true">
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">اطلاعات</label>
+          <textarea [(ngModel)]="agent.info" name="info" pInputText placeholder="اطلاعات"
+            disabled="disabled"></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <label class="panel-form-label">تصویر پروفایل</label>
+          <img [src]="agent.image" class="img-fluid" width="150" *ngIf="agent.image != null || agent.image != ''" />
+          <img src="../../../../../assets/images/user-default-black.png" class="img-fluid" width="150"
+            *ngIf="agent.image == null || agent.image == ''" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button pButton label="حذف" class="panel-dark-button mt-3" (click)="deleteAgent()"></button>
+          <button pButton label="انصراف" class="panel-border-button mt-3 ml-2" (click)="cancel()"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

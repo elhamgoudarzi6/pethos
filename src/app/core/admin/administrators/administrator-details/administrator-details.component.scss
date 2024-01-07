@@ -1,0 +1,48 @@
+input,
+:host::ng-deep .p-inputtext,
+:host::ng-deep .p-dropdown,
+:host::ng-deep .p-chips,
+.p-inputtext,
+.p-dropdown,
+.p-chips,
+textarea {
+  width: 100% !important;
+}
+
+:host::ng-deep .p-dialog .p-dialog-footer {
+  text-align: left !important;
+}
+
+:host::ng-deep .p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+  margin-right: 1rem !important;
+  font-family: IRANSans_Light !important;
+}
+
+:host::ng-deep .p-dialog-title {
+  font-family: IRANSans_Bold !important;
+}
+
+:host::ng-deep .p-confirm-dialog-reject {
+  border-color: #1b1b1b !important;
+  background-color: transparent !important;
+  color: #1b1b1b;
+}
+
+:host::ng-deep .p-confirm-dialog-reject:hover,
+:host::ng-deep .p-confirm-dialog-reject:active {
+  border-color: #1b1b1b !important;
+  background-color: #1b1b1b !important;
+  color: #fff;
+}
+
+:host::ng-deep .p-confirm-dialog-accept {
+  border-color: #1b1b1b !important;
+  background-color: #1b1b1b !important;
+}
+
+:host::ng-deep .p-confirm-dialog-accept:hover,
+:host::ng-deep .p-confirm-dialog-accept:active {
+  border-color: #1b1b1b !important;
+  background-color: transparent !important;
+  color: #1b1b1b;
+}

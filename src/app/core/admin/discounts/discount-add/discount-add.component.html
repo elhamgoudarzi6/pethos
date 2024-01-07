@@ -1,0 +1,83 @@
+<p-toast position="center"></p-toast>
+
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100 mt-3">
+
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">عنوان تخفیف</label>
+          <input
+            name="discountTitle"
+            type="text"
+            pInputText
+            formControlName="discountTitle"
+          />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.discountTitle"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('discountTitle').hasError(error.type) &&
+                (form.get('discountTitle').dirty || form.get('discountTitle').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">کد تخفیف</label>
+          <input
+            name="discountCode"
+            type="text"
+            pInputText
+            formControlName="discountCode"
+          />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">درصد تخفیف</label>
+          <input
+            name="discountPercent"
+            type="text"
+            pInputText
+            formControlName="discountPercent"
+          />
+
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.discountPercent"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                form.get('discountPercent').hasError(error.type) &&
+                (form.get('discountPercent').dirty || form.get('discountPercent').touched)
+              "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            type="submit"
+            pButton
+            label="ثبت"
+            [disabled]="form.invalid"
+            class="panel-dark-button mt-3"
+          ></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

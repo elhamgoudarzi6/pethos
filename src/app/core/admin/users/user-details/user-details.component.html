@@ -1,0 +1,112 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+></p-confirmDialog>
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <div class="col-12 no-gutters p-0 m-0">
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">شماره موبایل</label>
+          <input
+            [(ngModel)]="user.mobile"
+            name="mobile"
+            pInputText
+            placeholder="شماره موبایل"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">نام و نام خانوادگی</label>
+          <input
+            name="fullName"
+            type="text"
+            pInputText
+            [(ngModel)]="user.fullName"
+            disabled="disabled"
+          />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">تاریخ تولد</label>
+          <input
+            [(ngModel)]="user.birthDate"
+            name="mobile"
+            pInputText
+            placeholder="تاریخ تولد"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-sm-12">
+          <label class="panel-form-label">تصویر پروفایل</label>
+          <img
+            [src]="user.image"
+            class="img-fluid"
+            width="150"
+            *ngIf="user.image != null || user.image != ''"
+          />
+          <img
+            src="../../../../../assets/images/user-default-black.png"
+            class="img-fluid"
+            width="150"
+            *ngIf="user.image == null || user.image == ''"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 col-sm-12">
+          <label class="panel-form-label">سطح</label>
+          <input
+            disabled="disabled"
+            name="level"
+            type="text"
+            pInputText
+            [(ngModel)]="user.level"
+          />
+        </div>
+        <div class="col-lg-4 col-sm-12 col-sm-12">
+          <label class="panel-form-label">رتبه بندی</label>
+          <input
+            name="rating"
+            pKeyFilter
+            type="text"
+            pInputText
+            [(ngModel)]="user.rating"
+            disabled="disabled"
+          />
+        </div>
+        <div class="col-lg-4 col-sm-12 col-sm-12">
+          <label class="panel-form-label">کیف پول</label>
+          <input
+            name="walletValue"
+            type="text"
+            pInputText
+            [(ngModel)]="user.walletValue"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            pButton
+            label="حذف"
+            class="panel-dark-button mt-3"
+            (click)="deleteUser()"
+          ></button>
+          <button
+            pButton
+            label="انصراف"
+            class="panel-border-button mt-3 ml-2"
+            (click)="cancel()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,155 @@
+<p-toast position="center"></p-toast>
+
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-lg-6 col-sm-12 align-self-center text-right">
+            <h2 class="panel-title"> مدیریت املاک من</h2>
+          </div>
+          <div class="col-lg-6 col-sm-12 align-self-center">
+            <ul class="list-inline panel-breadcrumb">
+              <li class="list-inline-item pointer" [routerLink]="['/']">
+                پتوس
+              </li>
+              <li class="list-inline-item pointer" [routerLink]="['/admin']">
+                داشبورد
+              </li>
+              <li class="list-inline-item current">مدیریت املاک من</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box text-right">
+        <p-table #dt [value]="properties" dataKey="id" [rows]="5" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+          currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه" [filterDelay]="0"
+          [globalFilterFields]="['code', 'title', 'state', 'ciity']">
+          <ng-template pTemplate="caption">
+            <div class="table-header row">
+              <div class="col-sm-6 font-iran-bold">لیست املاک</div>
+              <div class="col-sm-12">
+                <span class="p-input-icon-left w-100 mt-3">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" class="w-100" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="جستجو کلی" />
+                </span>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 35px">ردیف</th>
+              <th pSortableColumn="code">
+                کد آگهی
+                <p-sortIcon field="code"></p-sortIcon>
+              </th>
+              <th pSortableColumn="userID">
+                کاربر
+                <p-sortIcon field="userID"></p-sortIcon>
+              </th>
+              <th pSortableColumn="propertyTypeID">
+                دسته بندی اول
+                <p-sortIcon field="propertyTypeID"></p-sortIcon>
+              </th>
+              <th pSortableColumn="subPropertyTypeID">
+                دسته بندی دوم
+                <p-sortIcon field="subPropertyTypeID"></p-sortIcon>
+              </th>
+              <th pSortableColumn="transactionTypeID">
+                نوع آگهی
+                <p-sortIcon field="transactionTypeID"></p-sortIcon>
+              </th>
+              <th pSortableColumn="title">
+                عنوان
+                <p-sortIcon field="title"></p-sortIcon>
+              </th>
+              <th pSortableColumn="state">
+                استان
+                <p-sortIcon field="state"></p-sortIcon>
+              </th>
+              <th pSortableColumn="city">
+                شهر
+                <p-sortIcon field="city"></p-sortIcon>
+              </th>
+              <th pSortableColumn="active">
+                آگهی
+                <p-sortIcon field="active"></p-sortIcon>
+              </th>
+              <th pSortableColumn="agentConfirm">
+                تایید
+                <p-sortIcon field="agentConfirm"></p-sortIcon>
+              </th>
+              <th>عملیات</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowIndex="rowIndex" let-property let-expanded="expanded">
+            <tr>
+              <td>
+                {{ rowIndex + 1 }}
+              </td>
+              <td>
+                {{ property.code }}
+              </td>
+              <td>
+                {{ property.User[0].mobile }}
+              </td>
+              <td>
+                {{ property.PropertyType[0].title }}
+              </td>
+              <td>
+                {{ property.SubPropertyType[0].title }}
+              </td>
+              <td>
+                {{ property.TransactionType[0].title }}
+              </td>
+              <td>
+                {{ property.title }}
+              </td>
+              <td>
+                {{ property.state }}
+              </td>
+              <td>
+                {{ property.city }}
+              </td>
+              <td>
+                <p-tag *ngIf="property.active" styleClass="p-mr-2" icon="pi pi-check" severity="success" value="فعال">
+                </p-tag>
+                <p-tag *ngIf="!property.active" icon="pi pi-times" severity="danger" value="غیرفعال"></p-tag>
+              </td>
+              <td>
+                <p-tag *ngIf="property.agentConfirm" styleClass="p-mr-2" icon="pi pi-check" severity="success" value="تایید شده">
+                </p-tag>
+                <p-tag *ngIf="!property.agentConfirm" icon="pi pi-times" severity="danger" value="تایید نشده"></p-tag>
+              </td>
+              <td>
+                <button pButton pRipple icon="pi pi-eye"
+                (click)="showDetailsPropertyDialog(property._id)" 
+                class="p-button-rounded p-button-text p-button-warning"></button>
+                <button pButton pRipple icon="pi pi-pencil"
+                (click)="showEditPropertyDialog(property._id)"
+                class="p-button-rounded p-button-text p-button-warning"></button>
+                <button pButton pRipple icon="pi pi-check"
+                (click)="showEditStatusPropertyDialog(property._id)"
+                  class="p-button-rounded p-button-text p-button-warning"></button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="11">هیچ رکوردی یافت نشد.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
+</div>

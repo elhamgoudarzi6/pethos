@@ -1,0 +1,174 @@
+<p-toast position="center"></p-toast>
+
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box">
+        <div class="row no-gutters justify-content-center">
+          <div class="col-lg-6 col-sm-12 align-self-center text-right">
+            <h2 class="panel-title">مدیریت تیکت ها</h2>
+          </div>
+          <div class="col-lg-6 col-sm-12 align-self-center">
+            <ul class="list-inline panel-breadcrumb">
+              <li class="list-inline-item pointer" [routerLink]="['/']">
+                پتوس
+              </li>
+              <li class="list-inline-item pointer" [routerLink]="['/admin']">
+                داشبورد
+              </li>
+              <li class="list-inline-item current">مدیریت تیکت ها</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="pnl-content p-3">
+  <div class="row no-gutters">
+    <div class="col-lg-12">
+      <div class="box text-right">
+        <p-table #dt [value]="tickets" dataKey="id" [rows]="5" [showCurrentPageReport]="true"
+          [rowsPerPageOptions]="[10, 25, 50]" [paginator]="true"
+          currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه" [filterDelay]="0"
+          [globalFilterFields]="['ticketNumber']">
+          <ng-template pTemplate="caption">
+            <div class="table-header row">
+              <div class="col-sm-6 font-iran-bold">لیست تیکت ها</div>
+              <div class="col-sm-6 text-left">
+                <button pButton pRipple label="جدید" icon="pi pi-plus"
+                  class="panel-border-button p-mr-2 p-button-icon-right" (click)="showAddTicketDialog()"></button>
+              </div>
+              <div class="col-sm-12">
+                <span class="p-input-icon-left w-100 mt-3">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" class="w-100" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                    placeholder="جستجو کلی" />
+                </span>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 45px"></th>
+              <th style="width: 45px">ردیف</th>
+              <th pSortableColumn="ticketNumber" >
+                شماره 
+                <p-sortIcon field="ticketNumber"></p-sortIcon>
+              </th>
+              <th pSortableColumn="userID">
+                کاربر
+                <p-sortIcon field="userID"></p-sortIcon>
+              </th>
+              <th pSortableColumn="agentID">
+                مشاور
+                <p-sortIcon field="agentID"></p-sortIcon>
+              </th>
+              <th pSortableColumn="title">
+                عنوان
+                <p-sortIcon field="title"></p-sortIcon>
+              </th>
+              <th>تاریخ و ساعت</th>
+              <th>تعداد پاسخ ها</th>
+              <th>عملیات</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowIndex="rowIndex" let-ticket let-expanded="expanded">
+            <tr>
+              <td>
+                <button type="button" pButton pRipple [pRowToggler]="ticket"
+                  class="p-button-text p-button-rounded p-button-plain" [icon]="
+                    expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'
+                  "></button>
+              </td>
+              <td>
+                {{ rowIndex + 1 }}
+              </td>
+              <td>
+                {{ticket.ticketNumber}}
+              </td>
+              <td>
+                {{
+                ticket.User[0].fullName + " (" + ticket.User[0].mobile + ")"
+                }}
+              </td>
+              <td>
+                {{
+                ticket.Agent[0].fullName +
+                " (" +
+                ticket.Agent[0].mobile +
+                ")"
+                }}
+              </td>
+              <td>
+                {{ ticket.title }}
+              </td>
+              <td>
+                {{ ticket.date}} <br>
+                {{ ticket.time }}
+              </td>
+              <td>
+                {{ ticket.detail.length }}
+              </td>
+              <td>
+                <button pButton pRipple icon="pi pi-reply" (click)="showReplyTicketDialog(ticket._id)"
+                  class="p-button-rounded p-button-text p-button-warning"></button>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="rowexpansion" let-ticket let-secondexpanded="expanded">
+            <tr>
+              <td colspan="8">
+                <div class="p-p-3 pr-3">
+                  <p-table [value]="ticket.detail" dataKey="id" class="bg-light-table mr-4">
+                    <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 45px">ردیف</th>
+              <th pSortableColumn="from">
+                فرستنده
+                <p-sortIcon field="from"></p-sortIcon>
+              </th>
+              <th pSortableColumn="message">
+                پیام
+                <p-sortIcon field="message"></p-sortIcon>
+              </th>
+              <th>تاریخ و ساعت</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-detail let-rowIndex="rowIndex">
+            <tr>
+              <td>{{ rowIndex + 1 }}</td>
+              <td *ngIf="detail.from === 'user' && ticket.User[0].fullName != '' ">{{ ticket.User[0].fullName }}</td>
+              <td *ngIf="detail.from === 'user' && ticket.User[0].fullName === ''">کاربر</td>
+              <td *ngIf="detail.from === 'agent'">{{ ticket.Agent[0].fullName }}</td>
+              <td>{{ detail.message }}</td>
+              <td>
+                {{ detail.date}} <br />
+                {{ detail.time }}
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4">هیچ مقداری ثبت نشده است.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+      </td>
+      </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8">هیچ رکوردی یافت نشد.</td>
+        </tr>
+      </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>
+</div>

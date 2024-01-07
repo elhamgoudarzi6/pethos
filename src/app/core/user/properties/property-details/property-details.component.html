@@ -1,0 +1,336 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+></p-confirmDialog>
+<div class="container-fluid mt-4 text-right">
+  <div class="row pnl-content">
+    <div class="col-12 no-gutters p-0 m-0">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label"
+            >دسته بندی اول <b class="text-danger">*</b></label
+          >
+          <p-dropdown
+            appendTo="body"
+            [options]="propertyTypes"
+            optionLabel="title"
+            [disabled]="true"
+          >
+          </p-dropdown>
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label"
+            >دسته بندی دوم<b class="text-danger">*</b></label
+          >
+          <p-dropdown
+            appendTo="body"
+            [options]="subPropertyTypes"
+            optionLabel="title"
+            [disabled]="true"
+          >
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label"
+            >عنوان<b class="text-danger">*</b></label
+          >
+          <input
+            name="title"
+            type="text"
+            pInputText
+            [(ngModel)]="property.title"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">نوع قیمت</label>
+          <p-dropdown
+            [options]="priceTypes"
+            optionLabel="name"
+            [disabled]="true"
+          ></p-dropdown>
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label"
+            >نوع آگهی<b class="text-danger">*</b></label
+          >
+          <p-dropdown
+            appendTo="body"
+            [options]="transactionTypes"
+            optionLabel="title"
+            [disabled]="true"
+          >
+          </p-dropdown>
+        </div>
+      </div>
+      <div class="row" *ngIf="!forSale">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">ودیعه</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.priceMortgage"
+            name="priceMortgage"
+            pInputText
+            placeholder="ودیعه"
+            disabled="disabled"
+          />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">اجاره</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.priceRent"
+            name="priceRent"
+            pInputText
+            placeholder="اجاره"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row" *ngIf="forSale">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">قیمت</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.price"
+            name="price"
+            pInputText
+            placeholder="قیمت"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">سن ملک</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.age"
+            name="age"
+            pInputText
+            placeholder="سن ملک"
+            disabled="disabled"
+          />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">متراژ</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.area"
+            name="area"
+            pInputText
+            placeholder="متراژ"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">تعداد اتاق خواب</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.bedroom"
+            name="bedroom"
+            pInputText
+            placeholder="تعداد اتاق خواب"
+            disabled="disabled"
+          />
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">تعداد حمام</label>
+          <input
+            pKeyFilter="int"
+            [(ngModel)]="property.bath"
+            name="bath"
+            pInputText
+            placeholder="تعداد حمام"
+            disabled="disabled"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">جزییات</label>
+          <textarea
+            [(ngModel)]="property.detail"
+            name="detail"
+            pInputText
+            placeholder="جزییات"
+            disabled="disabled"
+          ></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">ویژگی ها</label>
+          <p-multiSelect
+            [options]="features"
+            [(ngModel)]="property.features"
+            optionLabel="title"
+            [disabled]="true"
+          ></p-multiSelect>
+        </div>
+
+        <div class="col-lg-4 col-sm-12 mb-3">
+          <label class="panel-form-label">شرایط</label>
+          <p-multiSelect
+            [options]="conditions"
+            [(ngModel)]="property.condition"
+            optionLabel="title"
+            [disabled]="true"
+          ></p-multiSelect>
+        </div>
+
+        <div class="col-lg-4 col-sm-12 mb-3" *ngIf="isExchangable">
+          <label class="panel-form-label">معاوضه با</label>
+          <p-multiSelect
+            [options]="exchanges"
+            [(ngModel)]="property.exchange"
+            optionLabel="title"
+            [disabled]="true"
+          ></p-multiSelect>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">استان</label>
+          <p-dropdown
+            [options]="states"
+            optionLabel="name"
+            [disabled]="true"
+          ></p-dropdown>
+        </div>
+        <div class="col-lg-6 col-sm-12 mb-3">
+          <label class="panel-form-label">شهر</label>
+          <p-dropdown
+            [options]="cities"
+            optionLabel="name"
+            [disabled]="true"
+          ></p-dropdown>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">آدرس ملک</label>
+          <textarea
+            [(ngModel)]="property.address"
+            name="address"
+            pInputText
+            placeholder="آدرس ملک"
+            disabled="disabled"
+          ></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <div class="pethos-mapbox" id="pethos-mapbox"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">تصویر ملک</label>
+          <img [src]="property.image" class="img-fluid w-100" height="300px" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">تصاویر گالری</label>
+
+          <p-galleria
+            #galleria
+            [value]="galleryFiles"
+            [responsiveOptions]="responsiveOptions"
+            [numVisible]="5"
+            [circular]="true"
+            [showItemNavigators]="true"
+            [showThumbnails]="false"
+          >
+            <ng-template pTemplate="item" let-item>
+              <img
+                [src]="item.previewImageSrc"
+                style="width: 100%; display: block; height: 300px"
+              />
+            </ng-template>
+          </p-galleria>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">تصاویر داخلی</label>
+
+          <p-galleria
+            #galleria
+            [value]="vrFiles"
+            [responsiveOptions]="responsiveOptions"
+            [numVisible]="5"
+            [circular]="true"
+            [showItemNavigators]="true"
+            [showThumbnails]="false"
+          >
+            <ng-template pTemplate="item" let-item>
+              <img
+                [src]="item.previewImageSrc"
+                style="width: 100%; display: block; height: 300px"
+              />
+            </ng-template>
+          </p-galleria>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">توضیحات تصویر</label>
+          <p-chips
+            [addOnTab]="true"
+            [addOnBlur]="true"
+            [(ngModel)]="imageDescription"
+            [disabled]="true"
+          ></p-chips>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">کلمات کلیدی</label>
+          <p-chips
+            [addOnTab]="true"
+            [addOnBlur]="true"
+            [(ngModel)]="keywords"
+            [disabled]="true"
+          ></p-chips>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <label class="panel-form-label">متا ها</label>
+          <p-chips
+            [addOnTab]="true"
+            [addOnBlur]="true"
+            [(ngModel)]="metaDescription"
+            [disabled]="true"
+          ></p-chips>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex flex-row-reverse">
+          <button
+            pButton
+            label="حذف"
+            class="panel-dark-button mt-3"
+            (click)="deleteProperty()"
+          ></button>
+          <button
+            pButton
+            label="انصراف"
+            class="panel-border-button mt-3 ml-2"
+            (click)="cancel()"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
